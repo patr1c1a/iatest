@@ -1,0 +1,14 @@
+{
+  "tieBreakers": {
+    "q11": {
+      "prompt": "¿Cuál de estas afirmaciones te representa mejor?",
+      "options": {
+        "explorador": "Me entusiasma descubrir usos nuevos y poco habituales de la IA.",
+        "desconfiado": "Me cuesta confiar plenamente en las respuestas que da la IA.",
+        "jefe": "Ante cualquier tarea que tengo que hacer, busco delegarla a la IA.",
+        "minimalista": "Uso la IA principalmente para buscar información y obtener respuestas rápidas a mis preguntas.",
+        "prudente": "Me cuesta animarme a usar funciones nuevas de la IA porque siento que no sé lo suficiente."
+      }
+    }
+  }
+}

@@ -1,0 +1,264 @@
+{
+  "questions": [
+    {
+      "id": "q1",
+      "text": "Aparece una nueva herramienta de IA de la que todo el mundo está hablando. ¿Cuál sería tu reacción más probable?",
+      "options": [
+        {
+          "profile": "explorador",
+          "text": "Voy directo a probarla y experimentar."
+        },
+        {
+          "profile": "desconfiado",
+          "text": "Espero a ver si realmente aporta algo útil o si es otra moda pasajera."
+        },
+        {
+          "profile": "jefe",
+          "text": "Pienso qué tareas podría hacer por mí."
+        },
+        {
+          "profile": "minimalista",
+          "text": "No me interesa demasiado mientras pueda seguir haciendo preguntas a la herramienta que ya uso."
+        },
+        {
+          "profile": "prudente",
+          "text": "Espero a que alguien me explique y me muestre cómo usarla."
+        }
+      ]
+    },
+    {
+      "id": "q2",
+      "text": "Ves en redes sociales una instrucción para darle a la IA que promete resultados increíbles. ¿Qué sería más probable que hagas?",
+      "options": [
+        {
+          "profile": "explorador",
+          "text": "La pruebo para ver qué ocurre y qué ideas me da."
+        },
+        {
+          "profile": "desconfiado",
+          "text": "Sospecho que están exagerando y busco sus limitaciones."
+        },
+        {
+          "profile": "jefe",
+          "text": "La copio y pego para usarla inmediatamente y ver si puede ahorrarme tiempo."
+        },
+        {
+          "profile": "minimalista",
+          "text": "No me interesa demasiado porque normalmente solo hago consultas simples."
+        },
+        {
+          "profile": "prudente",
+          "text": "La guardo para cuando alguien me explique mejor cómo funciona."
+        }
+      ]
+    },
+    {
+      "id": "q3",
+      "text": " La IA te da una respuesta que parece útil, pero no resuelve completamente lo que necesitabas. ¿Cuál sería tu reacción más probable?",
+      "options": [
+        {
+          "profile": "explorador",
+          "text": "Sigo conversando y dándole instrucciones para ver hasta dónde puede llegar."
+        },
+        {
+          "profile": "desconfiado",
+          "text": "La dejo de lado y continúo sin IA."
+        },
+        {
+          "profile": "jefe",
+          "text": "Le pido directamente que me de una solución más completa."
+        },
+        {
+          "profile": "minimalista",
+          "text": "Me quedo con la parte de información que me sirvió."
+        },
+        {
+          "profile": "prudente",
+          "text": "Pienso que seguramente no sé usarla correctamente."
+        }
+      ]
+    },
+    {
+      "id": "q4",
+      "text": "La IA te da una respuesta larga y detallada sobre un tema importante para vos. ¿Cómo sería más probable que reacciones?",
+      "options": [
+        {
+          "profile": "explorador",
+          "text": "Empiezo a pensar qué otras preguntas podría hacerle para profundizar más."
+        },
+        {
+          "profile": "desconfiado",
+          "text": "Me pregunto qué partes debería verificar antes de confiar en ella."
+        },
+        {
+          "profile": "jefe",
+          "text": "Asumo que si respondió con tanto detalle probablemente sea correcta."
+        },
+        {
+          "profile": "minimalista",
+          "text": "Busco rápidamente el dato que necesitaba y sigo con otra cosa."
+        },
+        {
+          "profile": "prudente",
+          "text": "Me pregunto si habría una forma mejor de hacer la consulta."
+        }
+      ]
+    },
+    {
+      "id": "q5",
+      "text": "Alguien muestra algo que hizo con IA y que nunca habías visto. ¿Qué actitud es más probable que adoptes?",
+      "options": [
+        {
+          "profile": "explorador",
+          "text": "Inmediatamente pienso en otras variantes para probar."
+        },
+        {
+          "profile": "desconfiado",
+          "text": "Quiero entender cuáles son sus limitaciones antes de entusiasmarme."
+        },
+        {
+          "profile": "jefe",
+          "text": "Me interesa solo si puede ahorrarme tiempo."
+        },
+        {
+          "profile": "minimalista",
+          "text": "Aunque me parezca interesante, probablemente seguiría usando la IA como hasta ahora."
+        },
+        {
+          "profile": "prudente",
+          "text": "Pienso que necesitaría ayuda para aprender a usar algo así."
+        }
+      ]
+    },
+    {
+      "id": "q6",
+      "text": "Tenés una duda o tarea a hacer sobre un tema que no conocés demasiado. ¿Cuál sería la forma más probable en que podrías reaccionar?",
+      "options": [
+        {
+          "profile": "explorador",
+          "text": "Aprovecho para conversar bastante sobre eso con la IA y aprender cosas nuevas."
+        },
+        {
+          "profile": "desconfiado",
+          "text": "Le pregunto a la IA y tomo las respuestas con cautela hasta verificarlas."
+        },
+        {
+          "profile": "jefe",
+          "text": "Le pido a la IA directamente una recomendación o una solución concreta sobre el tema."
+        },
+        {
+          "profile": "minimalista",
+          "text": "Le hago una pregunta concreta a la IA y no continúo hablando con ella."
+        },
+        {
+          "profile": "prudente",
+          "text": "Me pregunto cuál será la forma correcta de pedirle ayuda a la IA con este tema."
+        }
+      ]
+    },
+    {
+      "id": "q7",
+      "text": "Descubrís que una tarea repetitiva de tu día a día podría hacerse con IA. ¿Cuál podría ser tu actitud más probable?",
+      "options": [
+        {
+          "profile": "explorador",
+          "text": "Me interesa experimentar para ver hasta dónde puede llegar la herramienta."
+        },
+        {
+          "profile": "desconfiado",
+          "text": "Solo la uso si compruebo que realmente funciona bien"
+        },
+        {
+          "profile": "jefe",
+          "text": "Le delego la tarea inmediatamente a la IA y sigo con mi vida."
+        },
+        {
+          "profile": "minimalista",
+          "text": "Si hay que hacer cosas más complejas que simplemente hacer preguntas, no la uso."
+        },
+        {
+          "profile": "prudente",
+          "text": "Me gustaría probarlo, pero necesitaría una guía paso a paso."
+        }
+      ]
+    },
+    {
+      "id": "q8",
+      "text": "Te enterás de que una herramienta de IA puede generar imágenes a partir de una descripción escrita. ¿Cuál sería tu reacción más probable?",
+      "options": [
+        {
+          "profile": "explorador",
+          "text": "Curiosidad por qué cosas raras o creativas puede lograr."
+        },
+        {
+          "profile": "desconfiado",
+          "text": "Dudo que pueda dar resultados realmente buenos y útiles."
+        },
+        {
+          "profile": "jefe",
+          "text": "Pienso si podría usarla para generar imágenes que de otra manera tendría que hacer por mi cuenta o encargar a otra persona que haga."
+        },
+        {
+          "profile": "minimalista",
+          "text": "No termino de entender para qué necesitaría algo así."
+        },
+        {
+          "profile": "prudente",
+          "text": "Me parece interesante, pero no sabría por dónde empezar."
+        }
+      ]
+    },
+    {
+      "id": "q9",
+      "text": "Usás IA para resolver un problema y el resultado es mucho mejor de lo que esperabas. ¿Qué reacción sería más probable en vos?",
+      "options": [
+        {
+          "profile": "explorador",
+          "text": "Me emociona pensar en qué otros usos originales podría darle."
+        },
+        {
+          "profile": "desconfiado",
+          "text": "Sospecho que tuve suerte y que no siempre dará resultados así de buenos."
+        },
+        {
+          "profile": "jefe",
+          "text": "Empiezo a buscar qué otras tareas podría dejar en manos de la IA."
+        },
+        {
+          "profile": "minimalista",
+          "text": "Obtengo lo que necesitaba y no sigo usando la herramienta."
+        },
+        {
+          "profile": "prudente",
+          "text": "Me alegra que haya funcionado, aunque sigo sintiendo que no termino de entender bien cómo usar estas herramientas."
+        }
+      ]
+    },
+    {
+      "id": "q10",
+      "text": "Si tuvieras una hora solo dedicada a aprender algo relacionado con IA, ¿qué elegirías?",
+      "options": [
+        {
+          "profile": "explorador",
+          "text": "Probar herramientas o funcionalidades nuevas."
+        },
+        {
+          "profile": "desconfiado",
+          "text": "Aprender cómo obtener respuestas más confiables."
+        },
+        {
+          "profile": "jefe",
+          "text": "Buscar qué otras tareas podría delegar o simplificar con ayuda de la IA."
+        },
+        {
+          "profile": "minimalista",
+          "text": "No sabría qué aprender porque no conozco qué cosas puede hacer la IA."
+        },
+        {
+          "profile": "prudente",
+          "text": "Que alguien me enseñe paso a paso cómo utilizarla mejor."
+        }
+      ]
+    }
+  ]
+}

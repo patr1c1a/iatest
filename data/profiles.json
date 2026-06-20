@@ -1,0 +1,69 @@
+{
+  "profiles": {
+    "explorador": {
+      "label": "Explorador",
+      "description": "Te entusiasman las nuevas posibilidades. Cuando encontrás una idea interesante, una herramienta nueva o una forma diferente de hacer algo, tu impulso natural suele ser seguir explorando para descubrir qué más es posible.",
+      "strengths": [
+        "Aprendés rápido explorando por tu cuenta.",
+        "Descubrís usos originales para las herramientas.",
+        "Te adaptás con facilidad a los cambios tecnológicos."
+      ],
+      "primaryRisk": "Perseguir posibilidades constantemente y perder foco en la ejecución.",
+      "characteristicStatement": "¿Cómo puedo aprovechar más mi uso de la IA?",
+      "underutilizedOpportunities": "Probablemente ya probaste más herramientas y funciones que la mayoría de las personas. Sin embargo, es posible que todavía no estés aprovechando algunas estrategias que ayudan a convertir la exploración en resultados concretos.",
+      "nextLearningStep": "Tu siguiente paso sería reconocer que la IA permite explorar infinitamente, pero los resultados aparecen cuando en algún momento dejamos de explorar y empezamos a actuar."
+    },
+    "desconfiado": {
+      "label": "Desconfiado",
+      "description": "No te impresionan fácilmente las promesas sobre inteligencia artificial. Antes de confiar en una respuesta, preferís cuestionarla, verificarla o compararla con otras fuentes. Valorás más la precisión que la velocidad.",
+      "strengths": [
+        "Detectás errores que otras personas pasan por alto.",
+        "Mantenés el criterio propio cuando usás IA.",
+        "Evitás caer fácilmente en exageraciones o modas."
+      ],
+      "primaryRisk": "Podés perder oportunidades útiles por enfocarte demasiado en las limitaciones de la herramienta.",
+      "characteristicStatement": "¿Son confiables las respuestas que me da la IA?",
+      "underutilizedOpportunities": "Es probable que tengas mejor criterio que muchas personas al evaluar respuestas de IA. Sin embargo, podrías estar descartando oportunidades útiles por no saber exactamente cuándo conviene confiar y cuándo no.",
+      "nextLearningStep": "Tu siguiente paso sería desarrollar criterios prácticos para decidir cuándo confiar y cuándo verificar."
+    },
+    "jefe": {
+      "label": "Jefe",
+      "description": "Ves a la IA como un asistente al que vale la pena delegarle trabajo. Cuando aparece una tarea, una duda o un problema, una de tus primeras reacciones suele ser preguntarte si la IA puede encargarse de ello.",
+      "strengths": [
+        "Detectás rápidamente oportunidades para ahorrar tiempo.",
+        "Incorporás nuevas herramientas sin demasiadas barreras.",
+        "Buscás resultados concretos y prácticos."
+      ],
+      "primaryRisk": "Podrías terminar confiando demasiado en respuestas o decisiones que deberían ser revisadas antes de usarlas.",
+      "characteristicStatement": "¿Qué puedo dejar en manos de la IA?",
+      "underutilizedOpportunities": "Probablemente ya encontraste formas de ahorrar tiempo usando IA. Sin embargo, algunas de las tareas que hoy delegás podrían requerir más supervisión de la que imaginás, mientras que otras podrían automatizarse mucho mejor.",
+      "nextLearningStep": "Tu siguiente paso sería aprender cómo delegar tareas a la IA de manera eficiente y cuándo es conveniente la supervisión humana."
+    },
+    "minimalista": {
+      "label": "Minimalista",
+      "description": "Usás la IA principalmente como una forma rápida y cómoda de obtener información. Solés hacer preguntas directas, obtener una respuesta y seguir con otra cosa sin explorar demasiado otras posibilidades.",
+      "strengths": [
+        "Vas directo al punto.",
+        "Obtenés respuestas rápidas sin complicarte.",
+        "Aprovechás la herramienta para resolver dudas cotidianas."
+      ],
+      "primaryRisk": "Podrías estar utilizando solo una pequeña parte de lo que estas herramientas pueden ofrecer.",
+      "characteristicStatement": "¿Qué información puede darme la IA?",
+      "underutilizedOpportunities": "Es posible que estés obteniendo respuestas rápidas y útiles pero probablemente solo estés usando una pequeña parte de las capacidades disponibles actualmente y haya mucho más en lo que la IA podría ayudarte en tu día a día.",
+      "nextLearningStep": "Tu siguiente paso probablemente sea descubrir usos de la IA que van mucho más allá de hacer preguntas."
+    },
+    "prudente": {
+      "label": "Prudente",
+      "description": "Antes de incorporar una herramienta nueva, necesitás sentir que entendés cómo funciona y cuáles son sus límites. Preferís avanzar con seguridad antes que improvisar, y muchas veces observás lo que hacen otros o preferís a esperar a que alguien te enseñe antes de animarte a probar por tu cuenta.",
+      "strengths": [
+        "Actuás con cautela y criterio.",
+        "Te preocupás por entender antes de actuar.",
+        "Evitás muchos errores impulsivos."
+      ],
+      "primaryRisk": "Podés terminar dependiendo demasiado de recetas de uso, instrucciones o ejemplos ajenos, incluso cuando ya tenés suficiente capacidad para experimentar por tu cuenta.",
+      "characteristicStatement": "¿Cuál es la forma más segura de empezar?",
+      "underutilizedOpportunities": "Es probable que estés esperando sentirte más preparado antes de aprovechar estas herramientas. Sin embargo, muchas de las capacidades que hoy parecen complejas son mucho más accesibles de lo que imaginás. Solo necesitás conocerlas para empezar a usarlas de manera efectiva.",
+      "nextLearningStep": "Tu siguiente paso probablemente sea ganar confianza para experimentar sin depender siempre de instrucciones ajenas."
+    }
+  }
+}

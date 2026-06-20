@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Para descubrir cómo es tu relación con la IA y obtener consejos específicos para tu perfil."
+    />
+    <title>Test para determinar cómo te relacionas con la IA</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fraunces:wght@600;700&family=Plus+Jakarta+Sans:wght@400;500;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="assets/css/styles.css" />
+  </head>
+  <body>
+    <noscript>
+      <div class="noscript-banner">
+        Este sitio necesita JavaScript para ejecutar el test y mostrar tu resultado.
+      </div>
+    </noscript>
+
+    <div class="page-shell">
+      <header class="site-header">
+        <div class="brand-block">
+          <p class="eyebrow">Test Gratuito</p>
+          <h1>¿Cómo usas la IA hoy?</h1>
+        </div>
+
+        <section
+          class="progress-panel"
+          aria-label="Progreso del test"
+        >
+          <div class="progress-copy">
+            <p id="progressLabel" class="progress-label">Listo para comenzar</p>
+            <p id="progressDetail" class="progress-detail">
+              10 preguntas.
+            </p>
+          </div>
+          <div class="progress-bar" aria-hidden="true">
+            <div id="progressFill" class="progress-fill"></div>
+          </div>
+        </section>
+      </header>
+
+      <main id="app" class="app-card" aria-live="polite" aria-busy="true"></main>
+    </div>
+
+    <script type="module" src="assets/js/app.js"></script>
+  </body>
+</html>

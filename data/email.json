@@ -1,0 +1,7 @@
+{
+  "fromName": "Perfil de Uso de IA",
+  "fromEmail": "resultados@example.com",
+  "subject": "Tu resultado del test de IA: {profile}",
+  "htmlBody": "<p>Hola {name},</p><p>Tu resultado ya está listo.</p><p><strong>Tu perfil al usar IA es:</strong> {profile}</p><p>Para consultar tu informe completo visita este enlace:</p><p><a href=\"{resultUrl}\">{resultUrl}</a></p><p>Gracias por completar el test.</p>",
+  "textBody": "Hola {name},\n\nTu resultado ya está listo.\n\nTu perfil al usar IA es: {profile}\n\nConsulta tu informe completo acá:\n{resultUrl}\n\nGracias por completar el test."
+}

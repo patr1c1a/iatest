@@ -1,0 +1,15 @@
+{
+  "cta": {
+    "kicker": "Siguiente paso",
+    "title": "Si te interesa seguir aprendiendo...",
+    "description": "Usa este resultado como punto de partida para dar el siguiente paso, experimentar y aprender más sobre IA.",
+    "primaryButton": {
+      "label": "Suscribirse para recibir novedades",
+      "url": "https://programaciondesdecero.eo.page/lista"
+    },
+    "secondaryButton": {
+      "label": "Volver al inicio",
+      "url": "index.html"
+    }
+  }
+}

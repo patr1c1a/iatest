@@ -1,0 +1,27 @@
+{
+  "site": {
+    "name": "Perfil de Uso de IA",
+    "baseUrl": "https://example.com"
+  },
+  "api": {
+    "baseUrl": "https://example-worker.example.workers.dev",
+    "submitPath": "/api/submissions",
+    "resultPath": "/api/results/{token}"
+  },
+  "storage": {
+    "progressKey": "perfil-ia-progress-v1",
+    "version": 1
+  },
+  "resultRules": {
+    "fallbackPriority": [
+      "prudente",
+      "explorador",
+      "minimalista",
+      "desconfiado",
+      "jefe"
+    ]
+  },
+  "pdf": {
+    "fileNamePrefix": "perfil-ia"
+  }
+}

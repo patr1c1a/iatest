@@ -1,0 +1,6 @@
+name = "perfil-ia-worker"
+main = "src/index.js"
+compatibility_date = "2026-06-16"
+
+[observability]
+enabled = true
