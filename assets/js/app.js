@@ -47,7 +47,7 @@ async function initialize() {
     runtime.state = restoreOrCreateState();
 
     bindGlobalEvents();
-    renderCurrentStage();
+    navigateToStage();
   } catch (error) {
     renderFatalError(
       "No fue posible cargar el test en este momento. Recarga la página para volver a intentarlo.",
@@ -131,7 +131,7 @@ function persistState() {
 function resetState() {
   runtime.state = createFreshState();
   persistState();
-  renderCurrentStage();
+  navigateToStage();
 }
 
 function bindGlobalEvents() {
@@ -155,7 +155,7 @@ function handleClick(event) {
       runtime.state.stage = "question";
       runtime.state.currentQuestionIndex = 0;
       persistState();
-      renderCurrentStage();
+      navigateToStage();
       break;
     case "restart-test":
       resetState();
@@ -301,14 +301,14 @@ function goToNextStep() {
     const currentQuestion = runtime.questions[runtime.state.currentQuestionIndex];
 
     if (!runtime.state.answers[currentQuestion.id]) {
-      renderCurrentStage("Selecciona una opciÃ³n antes de avanzar.", "error");
+      renderCurrentStage("Selecciona una opción antes de avanzar.", "error");
       return;
     }
 
     if (runtime.state.currentQuestionIndex < runtime.questions.length - 1) {
       runtime.state.currentQuestionIndex += 1;
       persistState();
-      renderCurrentStage();
+      navigateToStage();
       return;
     }
 
@@ -327,13 +327,13 @@ function goToPreviousStep() {
     if (runtime.state.currentQuestionIndex > 0) {
       runtime.state.currentQuestionIndex -= 1;
       persistState();
-      renderCurrentStage();
+      navigateToStage();
       return;
     }
 
     runtime.state.stage = "intro";
     persistState();
-    renderCurrentStage();
+    navigateToStage();
     return;
   }
 
@@ -343,7 +343,7 @@ function goToPreviousStep() {
     runtime.state.tieBreakerChoice = "";
     runtime.state.finalProfile = "";
     persistState();
-    renderCurrentStage();
+    navigateToStage();
     return;
   }
 
@@ -356,7 +356,7 @@ function goToPreviousStep() {
     }
 
     persistState();
-    renderCurrentStage();
+    navigateToStage();
   }
 }
 
@@ -379,7 +379,7 @@ function resolveFinalStage() {
     runtime.state.stage = "lead";
     runtime.state.tiedProfiles = [];
     persistState();
-    renderCurrentStage();
+    navigateToStage();
     return;
   }
 
@@ -391,7 +391,7 @@ function resolveFinalStage() {
   runtime.state.tieBreakerChoice = "";
   runtime.state.finalProfile = "";
   persistState();
-  renderCurrentStage();
+  navigateToStage();
 }
 
 function renderCurrentStage(feedbackMessage = "", feedbackType = "") {
@@ -416,7 +416,15 @@ function renderCurrentStage(feedbackMessage = "", feedbackType = "") {
   }
 
   appRoot.setAttribute("aria-busy", "false");
-  window.scrollTo({ top: 0, behavior: "smooth" });
+}
+
+function navigateToStage() {
+  renderCurrentStage();
+
+  window.scrollTo({
+    top: 0,
+    behavior: "smooth"
+  });
 }
 
 function updateProgress() {
@@ -630,7 +638,7 @@ function renderLeadScreen(feedbackMessage = "", feedbackType = "") {
       <form id="leadForm" class="screen" novalidate>
         <div class="grid-two">
           <div class="field-group">
-            <label class="field-label" for="name">Nombre (*)</label>
+            <label class="field-label" for="name">Nombre y apellido<span class="field-help">(requerido)</span></label>
             <input
               class="field-input"
               id="name"
@@ -643,7 +651,7 @@ function renderLeadScreen(feedbackMessage = "", feedbackType = "") {
           </div>
 
           <div class="field-group">
-            <label class="field-label" for="email">Email (*)</label>
+            <label class="field-label" for="email">Email <span class="field-help">(requerido)</span></label>
             <input
               class="field-input"
               id="email"
