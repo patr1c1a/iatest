@@ -1,6 +1,6 @@
 {
   "tieBreakers": {
-    "q11": {
+    "question": {
       "prompt": "¿Cuál de estas afirmaciones te representa mejor?",
       "options": {
         "explorador": "Me entusiasma descubrir usos nuevos y poco habituales de la IA.",

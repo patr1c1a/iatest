@@ -556,7 +556,7 @@ function renderQuestionScreen(feedbackMessage = "", feedbackType = "") {
 }
 
 function renderTieBreakerScreen(feedbackMessage = "", feedbackType = "") {
-  const tieData = runtime.tieBreakers.q11;  // la "pregunta 11" es la que se usa para desempatar (está en tieBreakers.json)
+  const tieData = runtime.tieBreakers.question;
 
   if (!tieData || !runtime.state.tiedProfiles.length) {
     renderFatalError("No se encontró la configuración de la pregunta de desempate.");
