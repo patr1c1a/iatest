@@ -10,6 +10,8 @@ const appRoot = document.querySelector("#app");
 const progressLabel = document.querySelector("#progressLabel");
 const progressDetail = document.querySelector("#progressDetail");
 const progressFill = document.querySelector("#progressFill");
+const progressPanel = document.querySelector(".progress-panel");
+const restartButton = document.querySelector("[data-action='restart-test']");
 
 const dataUrls = {
   app: "data/app.json",
@@ -136,6 +138,7 @@ function resetState() {
 
 function bindGlobalEvents() {
   appRoot.addEventListener("click", handleClick);
+  progressPanel.addEventListener("click", handleClick);
   appRoot.addEventListener("change", handleChange);
   appRoot.addEventListener("input", handleInput);
   appRoot.addEventListener("submit", handleSubmit);
@@ -453,6 +456,10 @@ function updateProgress() {
   progressLabel.textContent = label;
   progressDetail.textContent = detail;
   progressFill.style.width = `${percentage}%`;
+
+  const hasProgress =
+  runtime.state.stage !== "intro" || Object.keys(runtime.state.answers).length > 0;
+  restartButton.style.display = hasProgress ? "" : "none";
 }
 
 function renderIntroScreen() {
