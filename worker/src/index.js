@@ -1,6 +1,7 @@
 import emailTemplate from "../../data/email.json";
 import profilesCatalog from "../../data/profiles.json";
 
+const QUESTION_COUNT = 10;
 const PROFILE_KEYS = Object.keys(profilesCatalog.profiles);
 const SHEET_HEADERS = [
   "timestamp",
@@ -152,14 +153,7 @@ function validatePayload(payload) {
 
   const answerEntries = Object.entries(payload.answers);
 
-  if (answerEntries.length !== 10) {
-    return "Debes enviar exactamente 10 respuestas.";
-  }
-
-  const invalidAnswer = answerEntries.find(([, profileKey]) => !PROFILE_KEYS.includes(profileKey));
-
-  if (invalidAnswer) {
-    return "Una o más respuestas contienen perfiles no válidos.";
+  for (let i = 1; i <= QUESTION_COUNT; i++) {
   }
 
   return "";
