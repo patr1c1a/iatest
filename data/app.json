@@ -1,10 +1,10 @@
 {
   "site": {
     "name": "Perfil de Uso de IA",
-    "baseUrl": "https://example.com"
+    "baseUrl": "https://patriciaemiguel.com"
   },
   "api": {
-    "baseUrl": "https://example-worker.example.workers.dev",
+    "baseUrl": "https://perfil-ia-worker.patriciaemiguel.workers.dev",
     "submitPath": "/api/submissions",
     "resultPath": "/api/results/{token}"
   },
