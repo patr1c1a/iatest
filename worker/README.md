@@ -82,12 +82,15 @@ Al finalizar el despliegue, dará la url donde se desplegó, ejemplo: https://pe
 }
 ```
 
+Ante cualquier cambio en el worker, se debe volver a hacer deploy (`cd worker` y luego `wrangler deploy`).
+
 ## Prueba
 
 En Postman hacer un POST a `https://perfil-ia-worker.patriciaemiguel.workers.dev/api/submissions`
 
 En el body:
 
+```txt
 {
   "name": "TestUser",
   "email": "testuser@test.com",
@@ -105,6 +108,10 @@ En el body:
     "q10":"minimalista"
   },
   "result":"explorador"
+  "testVersion": 1
 }
+```
 
 Si funciona correctamente, debería responder con el token y en la planilla debe insertarse una fila con los datos.
+
+Para ver logs, dejar corriendo el comando `wrangler tail` mientras se hace el POST.

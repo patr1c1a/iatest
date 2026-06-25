@@ -234,7 +234,7 @@ async function handleSubmit(event) {
     country: inferCountry(),
     answers: runtime.state.answers,
     result: runtime.state.finalProfile,
-    token: "",
+    testVersion: runtime.appConfig.storage.version,
   };
 
   runtime.state.lead = {

@@ -5,6 +5,7 @@ const PROFILE_KEYS = Object.keys(profilesCatalog.profiles);
 const SHEET_HEADERS = [
   "timestamp",
   "token",
+  "testVersion",
   "name",
   "email",
   "city",
@@ -71,6 +72,7 @@ async function handleSubmission(request, env) {
   const record = {
     timestamp: new Date().toISOString(),
     token,
+    testVersion: payload.testVersion,
     name: sanitizeText(payload.name),
     email: sanitizeText(payload.email),
     city: sanitizeText(payload.city),
@@ -213,7 +215,7 @@ function jsonResponse(payload, status = 200) {
 }
 
 async function ensureSheetHeaders(env) {
-  const headerRange = buildSheetRange(env.GOOGLE_SHEET_NAME, "A1:H1");
+  const headerRange = buildSheetRange(env.GOOGLE_SHEET_NAME, "A1:I1");
   const currentHeaderRow = await sheetsRequest(
     env,
     `/values/${headerRange}`,
@@ -242,10 +244,11 @@ async function ensureSheetHeaders(env) {
 }
 
 async function appendSheetRow(env, record) {
-  const range = buildSheetRange(env.GOOGLE_SHEET_NAME, "A:H");
+  const range = buildSheetRange(env.GOOGLE_SHEET_NAME, "A:I");
   const values = [
     record.timestamp,
     record.token,
+    record.testVersion,
     record.name,
     record.email,
     record.city,
@@ -265,7 +268,7 @@ async function appendSheetRow(env, record) {
 }
 
 async function readSheetRecords(env) {
-  const range = buildSheetRange(env.GOOGLE_SHEET_NAME, "A:H");
+  const range = buildSheetRange(env.GOOGLE_SHEET_NAME, "A:I");
   const response = await sheetsRequest(env, `/values/${range}`, { method: "GET" });
   const rows = response.values || [];
 
@@ -276,12 +279,13 @@ async function readSheetRecords(env) {
   return rows.slice(1).map((row) => ({
     timestamp: row[0] || "",
     token: row[1] || "",
-    name: row[2] || "",
-    email: row[3] || "",
-    city: row[4] || "",
-    country: row[5] || "",
-    result: row[6] || "",
-    answers: parseAnswers(row[7]),
+    testVersion: Number(row[2]) || 1,
+    name: row[3] || "",
+    email: row[4] || "",
+    city: row[5] || "",
+    country: row[6] || "",
+    result: row[7] || "",
+    answers: parseAnswers(row[8]),
   }));
 }
 
