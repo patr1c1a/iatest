@@ -234,7 +234,6 @@ async function handleSubmit(event) {
     country: inferCountry(),
     answers: runtime.state.answers,
     result: runtime.state.finalProfile,
-    timestamp: new Date().toISOString(),
     token: "",
   };
 
