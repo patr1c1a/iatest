@@ -242,7 +242,6 @@ async function handleSubmit(event) {
     city: String(formData.get("city") || "").trim(),
     country: inferCountry(),
     answers,
-    result: runtime.state.finalProfile,
     testVersion: runtime.appConfig.storage.version,
   };
 
@@ -300,10 +299,6 @@ function validateLeadPayload(payload) {
     if (!payload.answers[`q${i}`]) {
       return "Completa todas las preguntas antes de enviar tus datos.";
     }
-  }
-
-  if (!payload.result) {
-    return "No fue posible resolver tu perfil final. Revisa tus respuestas e intentalo otra vez.";
   }
 
   return "";

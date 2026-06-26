@@ -80,6 +80,15 @@ async function handleSubmission(request, env) {
 
   const token = crypto.randomUUID().replaceAll("-", "");
   const country = sanitizeText(payload.country) || request.cf?.country || "";
+  let finalProfile;
+  try {
+    finalProfile = resolveFinalProfile(payload.answers);
+  } catch (error) {
+    return jsonResponse(
+      { error: error.message },
+      400,
+    );
+  }
   const record = {
     timestamp: new Date().toISOString(),
     token,
@@ -88,7 +97,7 @@ async function handleSubmission(request, env) {
     email: sanitizeText(payload.email),
     city: sanitizeText(payload.city),
     country,
-    result: sanitizeText(payload.result),
+    result: finalProfile,
     answers: payload.answers,
   };
 
@@ -139,7 +148,6 @@ function validatePayload(payload) {
 
   const name = sanitizeText(payload.name);
   const email = sanitizeText(payload.email);
-  const result = sanitizeText(payload.result);
 
   if (!name) {
     return "El nombre es obligatorio.";
@@ -151,10 +159,6 @@ function validatePayload(payload) {
 
   if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
     return "El email no tiene un formato válido.";
-  }
-
-  if (!PROFILE_KEYS.includes(result)) {
-    return "El perfil final indicado no es válido.";
   }
 
   if (!payload.answers || typeof payload.answers !== "object") {
@@ -179,6 +183,36 @@ function validatePayload(payload) {
 
 function sanitizeText(value) {
   return String(value ?? "").trim();
+}
+
+function resolveFinalProfile(answers) {
+  const scores = Object.fromEntries(
+    PROFILE_KEYS.map((profile) => [profile, 0]),
+  );
+
+  for (let i = 1; i <= QUESTION_COUNT; i++) {
+    scores[answers[`q${i}`]] += 1;
+  }
+
+  const highestScore = Math.max(...Object.values(scores));
+
+  const tiedProfiles = Object.entries(scores)
+    .filter(([, score]) => score === highestScore)
+    .map(([profile]) => profile);
+
+  if (tiedProfiles.length === 1) {
+    return tiedProfiles[0];
+  }
+
+  if (!answers.q11) {
+    throw new Error("Tie breaker answer is missing.");
+  }
+
+  if (!tiedProfiles.includes(answers.q11)) {
+    throw new Error("Tie breaker answer is not one of the tied profiles.");
+  }
+
+  return answers.q11;
 }
 
 function buildResultUrl(siteDomain, token) {
