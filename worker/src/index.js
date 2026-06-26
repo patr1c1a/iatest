@@ -59,7 +59,7 @@ export default {
 
       return withCors(
         jsonResponse(
-          { error: "No pudimos completar la operación en este momento." },
+          { error: "No es posible completar la operación en este momento." },
           500,
         ),
         request,
@@ -112,7 +112,7 @@ async function handleSubmission(request, env) {
   } catch (error) {
     console.error("email_error", error);
     emailWarning =
-      "No pudimos enviar el email automáticamente, pero tu resultado quedó guardado.";
+      "No fue posible enviar el email automáticamente, pero tu resultado quedó guardado.";
   }
 
   return jsonResponse(
@@ -127,7 +127,7 @@ async function handleSubmission(request, env) {
 
 async function handleResultLookup(token, env) {
   if (!token) {
-    return jsonResponse({ error: "Debes indicar un token válido." }, 400);
+    return jsonResponse({ error: "Se debe indicar un token válido." }, 400);
   }
 
   await ensureSheetHeaders(env);
@@ -136,7 +136,7 @@ async function handleResultLookup(token, env) {
   const matchedRecord = records.find((record) => record.token === token);
 
   if (!matchedRecord) {
-    return jsonResponse({ error: "No encontramos un resultado asociado a ese enlace." }, 404);
+    return jsonResponse({ error: "No se encontró un resultado asociado a ese enlace." }, 404);
   }
 
   return jsonResponse({ record: matchedRecord });
@@ -176,7 +176,7 @@ function validatePayload(payload) {
     payload.answers[TIE_BREAKER_QUESTION] &&
     !PROFILE_KEYS.includes(payload.answers[TIE_BREAKER_QUESTION])
   ) {
-    return "La respuesta a q11 no es válida.";
+    return "La respuesta a la pregunta de desempate no es válida.";
   }
 
   return "";
@@ -206,11 +206,11 @@ function resolveFinalProfile(answers) {
   }
 
   if (!answers[TIE_BREAKER_QUESTION]) {
-    throw new Error("Tie breaker answer is missing.");
+    throw new Error("No se encuentra la respuesta a la pregunta de desempate.");
   }
 
   if (!tiedProfiles.includes(answers[TIE_BREAKER_QUESTION])) {
-    throw new Error("Tie breaker answer is not one of the tied profiles.");
+    throw new Error("La respuesta de desempate no corresponde a uno de los perfiles empatados.");
   }
 
   return answers[TIE_BREAKER_QUESTION];
@@ -379,7 +379,7 @@ async function sheetsRequest(env, path, options) {
   const payload = await response.json();
 
   if (!response.ok) {
-    throw new Error(payload.error?.message || "No pudimos comunicarnos con Google Sheets.");
+    throw new Error(payload.error?.message || "No se pudo establecer comunicación con Google Sheets.");
   }
 
   return payload;
@@ -410,7 +410,7 @@ async function sendResultEmail(env, record, resultUrl) {
 
   if (!response.ok) {
     const errorPayload = await response.text();
-    throw new Error(errorPayload || "No pudimos enviar el email con Resend.");
+    throw new Error(errorPayload || "No fue posible enviar el email con Resend.");
   }
 }
 
@@ -457,7 +457,7 @@ async function getGoogleAccessToken(env) {
     throw new Error(
       tokenPayload.error_description ||
         tokenPayload.error ||
-        "No pudimos autenticar con Google.",
+        "No fue posible autenticar con Google.",
     );
   }
 
