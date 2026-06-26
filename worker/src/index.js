@@ -2,6 +2,7 @@ import emailTemplate from "../../data/email.json";
 import profilesCatalog from "../../data/profiles.json";
 
 const QUESTION_COUNT = 10;
+const TIE_BREAKER_QUESTION = "q11";
 const PROFILE_KEYS = Object.keys(profilesCatalog.profiles);
 const SHEET_HEADERS = [
   "timestamp",
@@ -172,8 +173,8 @@ function validatePayload(payload) {
   }
 
   if (
-    payload.answers.q11 &&
-    !PROFILE_KEYS.includes(payload.answers.q11)
+    payload.answers[TIE_BREAKER_QUESTION] &&
+    !PROFILE_KEYS.includes(payload.answers[TIE_BREAKER_QUESTION])
   ) {
     return "La respuesta a q11 no es válida.";
   }
@@ -204,15 +205,15 @@ function resolveFinalProfile(answers) {
     return tiedProfiles[0];
   }
 
-  if (!answers.q11) {
+  if (!answers[TIE_BREAKER_QUESTION]) {
     throw new Error("Tie breaker answer is missing.");
   }
 
-  if (!tiedProfiles.includes(answers.q11)) {
+  if (!tiedProfiles.includes(answers[TIE_BREAKER_QUESTION])) {
     throw new Error("Tie breaker answer is not one of the tied profiles.");
   }
 
-  return answers.q11;
+  return answers[TIE_BREAKER_QUESTION];
 }
 
 function buildResultUrl(siteDomain, token) {
