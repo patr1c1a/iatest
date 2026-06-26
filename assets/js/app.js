@@ -236,11 +236,11 @@ async function handleSubmit(event) {
     answers[TIE_BREAKER_QUESTION] = runtime.state.tieBreakerChoice;
   }   
   const formData = new FormData(form);
+
   const payload = {
     name: String(formData.get("name") || "").trim(),
     email: String(formData.get("email") || "").trim(),
     city: String(formData.get("city") || "").trim(),
-    country: inferCountry(),
     answers,
     testVersion: runtime.appConfig.storage.version,
   };

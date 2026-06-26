@@ -80,7 +80,7 @@ async function handleSubmission(request, env) {
   await ensureSheetHeaders(env);
 
   const token = crypto.randomUUID().replaceAll("-", "");
-  const country = sanitizeText(payload.country) || request.cf?.country || "";
+  const country = request.cf?.country || "";
   let finalProfile;
   try {
     finalProfile = resolveFinalProfile(payload.answers);
