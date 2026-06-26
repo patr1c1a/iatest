@@ -29,6 +29,8 @@ const runtime = {
   isSubmitting: false,
 };
 
+const TIE_BREAKER_QUESTION = "q11";
+
 document.addEventListener("DOMContentLoaded", initialize);
 
 async function initialize() {
@@ -226,13 +228,20 @@ async function handleSubmit(event) {
     return;
   }
 
+  const answers = {
+    ...runtime.state.answers,
+  };  
+
+  if (runtime.state.tieBreakerChoice) {
+    answers[TIE_BREAKER_QUESTION] = runtime.state.tieBreakerChoice;
+  }   
   const formData = new FormData(form);
   const payload = {
     name: String(formData.get("name") || "").trim(),
     email: String(formData.get("email") || "").trim(),
     city: String(formData.get("city") || "").trim(),
     country: inferCountry(),
-    answers: runtime.state.answers,
+    answers,
     result: runtime.state.finalProfile,
     testVersion: runtime.appConfig.storage.version,
   };
@@ -287,8 +296,10 @@ function validateLeadPayload(payload) {
     return "Ingresa un email válido.";
   }
 
-  if (Object.keys(payload.answers).length !== runtime.questions.length) {
-    return "Completa todas las preguntas antes de enviar tus datos.";
+  for (let i = 1; i <= runtime.questions.length; i++) {
+    if (!payload.answers[`q${i}`]) {
+      return "Completa todas las preguntas antes de enviar tus datos.";
+    }
   }
 
   if (!payload.result) {

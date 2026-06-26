@@ -12,7 +12,17 @@ const SHEET_HEADERS = [
   "city",
   "country",
   "result",
-  "answers",
+  "q1",
+  "q2",
+  "q3",
+  "q4",
+  "q5",
+  "q6",
+  "q7",
+  "q8",
+  "q9",
+  "q10",
+  "q11",
 ];
 
 export default {
@@ -151,9 +161,17 @@ function validatePayload(payload) {
     return "Las respuestas del test son obligatorias.";
   }
 
-  const answerEntries = Object.entries(payload.answers);
-
   for (let i = 1; i <= QUESTION_COUNT; i++) {
+    if (!PROFILE_KEYS.includes(payload.answers[`q${i}`])) {
+      return `La respuesta a q${i} no es válida.`;
+    }
+  }
+
+  if (
+    payload.answers.q11 &&
+    !PROFILE_KEYS.includes(payload.answers.q11)
+  ) {
+    return "La respuesta a q11 no es válida.";
   }
 
   return "";
@@ -209,7 +227,7 @@ function jsonResponse(payload, status = 200) {
 }
 
 async function ensureSheetHeaders(env) {
-  const headerRange = buildSheetRange(env.GOOGLE_SHEET_NAME, "A1:I1");
+  const headerRange = buildSheetRange(env.GOOGLE_SHEET_NAME, "A1:S1");
   const currentHeaderRow = await sheetsRequest(
     env,
     `/values/${headerRange}`,
@@ -238,7 +256,7 @@ async function ensureSheetHeaders(env) {
 }
 
 async function appendSheetRow(env, record) {
-  const range = buildSheetRange(env.GOOGLE_SHEET_NAME, "A:I");
+  const range = buildSheetRange(env.GOOGLE_SHEET_NAME, "A:S");
   const values = [
     record.timestamp,
     record.token,
@@ -248,7 +266,17 @@ async function appendSheetRow(env, record) {
     record.city,
     record.country,
     record.result,
-    JSON.stringify(record.answers),
+    record.answers.q1 || "",
+    record.answers.q2 || "",
+    record.answers.q3 || "",
+    record.answers.q4 || "",
+    record.answers.q5 || "",
+    record.answers.q6 || "",
+    record.answers.q7 || "",
+    record.answers.q8 || "",
+    record.answers.q9 || "",
+    record.answers.q10 || "",
+    record.answers.q11 || "",
   ];
 
   await sheetsRequest(
@@ -262,7 +290,7 @@ async function appendSheetRow(env, record) {
 }
 
 async function readSheetRecords(env) {
-  const range = buildSheetRange(env.GOOGLE_SHEET_NAME, "A:I");
+  const range = buildSheetRange(env.GOOGLE_SHEET_NAME, "A:S");
   const response = await sheetsRequest(env, `/values/${range}`, { method: "GET" });
   const rows = response.values || [];
 
@@ -279,16 +307,20 @@ async function readSheetRecords(env) {
     city: row[5] || "",
     country: row[6] || "",
     result: row[7] || "",
-    answers: parseAnswers(row[8]),
+    answers: {
+      q1: row[8] || "",
+      q2: row[9] || "",
+      q3: row[10] || "",
+      q4: row[11] || "",
+      q5: row[12] || "",
+      q6: row[13] || "",
+      q7: row[14] || "",
+      q8: row[15] || "",
+      q9: row[16] || "",
+      q10: row[17] || "",
+      q11: row[18] || "",
+    },
   }));
-}
-
-function parseAnswers(value) {
-  try {
-    return JSON.parse(value || "{}");
-  } catch {
-    return {};
-  }
 }
 
 function buildSheetRange(sheetName, cells) {
