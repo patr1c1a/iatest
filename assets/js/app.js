@@ -644,7 +644,7 @@ function renderLeadScreen(feedbackMessage = "", feedbackType = "") {
       <form id="leadForm" class="screen" novalidate>
         <div class="grid-two">
           <div class="field-group">
-            <label class="field-label" for="name">Nombre y apellido<span class="field-help">(requerido)</span></label>
+            <label class="field-label" for="name">Nombre y apellido <span class="field-help">(requerido)</span></label>
             <input
               class="field-input"
               id="name"
