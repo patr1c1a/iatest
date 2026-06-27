@@ -15,12 +15,12 @@ Aplicación estática en HTML, CSS y JavaScript vanilla para evaluar el perfil d
 
 Todo el contenido principal del negocio se edita sin tocar el código:
 
-- `data/questions.json`
-- `data/profiles.json`
-- `data/tieBreakers.json`
-- `data/cta.json`
-- `data/email.json`
-- `data/app.json`
+- `data/questions.json`: las preguntas del test.
+- `data/profiles.json`: los perfiles y sus descripciones.
+- `data/tieBreakers.json`: pregunta a usar en caso de empate.
+- `data/cta.json`: Call To Action para luego de terminado el test.
+- `data/email.json`: email a enviar al usuario.
+- `data/app.json`: datos de la aplicación.
 
 ## Frontend
 
