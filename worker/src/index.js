@@ -25,6 +25,10 @@ const SHEET_HEADERS = [
   "q10",
   "q11",
 ];
+const EMAIL_RATE_LIMIT = {
+  maxRequests: 3,
+  windowHours: 1,
+};
 
 export default {
   async fetch(request, env) {
@@ -78,6 +82,18 @@ async function handleSubmission(request, env) {
   }
 
   await ensureSheetHeaders(env);
+
+  const existingRecords = await readSheetRecords(env);
+
+  if (hasExceededEmailLimit(existingRecords, payload.email)) {
+    return jsonResponse(
+      {
+        error:
+          "Se alcanzó el máximo de solicitudes permitidas para este email. Intenta nuevamente más tarde.",
+      },
+      429,
+    );
+  }
 
   const token = crypto.randomUUID().replaceAll("-", "");
   const country = request.cf?.country || "";
@@ -288,6 +304,22 @@ async function ensureSheetHeaders(env) {
       }),
     },
   );
+}
+
+function hasExceededEmailLimit(records, email) {
+  const normalizedEmail = sanitizeText(email).toLowerCase();
+
+  const cutoff = Date.now() - EMAIL_RATE_LIMIT.windowHours * 60 * 60 * 1000;
+
+  const recentCount = records.filter((record) => {
+    if (sanitizeText(record.email).toLowerCase() !== normalizedEmail) {
+      return false;
+    }
+
+    return new Date(record.timestamp).getTime() >= cutoff;
+  }).length;
+
+  return recentCount >= EMAIL_RATE_LIMIT.maxRequests;
 }
 
 async function appendSheetRow(env, record) {
