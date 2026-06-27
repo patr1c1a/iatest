@@ -46,7 +46,7 @@ async function initialize() {
   } catch (error) {
     renderErrorState(
       error.message ||
-        "No pudimos recuperar tu resultado. Intenta nuevamente desde el enlace original.",
+        "No fue posible recuperar tu resultado. Intenta nuevamente desde el enlace original.",
     );
   }
 }
@@ -278,7 +278,7 @@ function renderErrorState(message) {
   resultRoot.innerHTML = `
     <section class="result-card empty-state">
       <div>
-        <h2>No pudimos mostrar tu resultado</h2>
+        <h2>No fue posible mostrar tu resultado</h2>
         <p class="section-copy">${escapeHtml(message)}</p>
         <div class="button-row">
           <a class="button" href="index.html">Volver al test</a>
