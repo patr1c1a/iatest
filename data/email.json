@@ -1,7 +1,7 @@
 {
   "fromName": "Perfil de Uso de IA",
-  "fromEmail": "resultados@example.com",
-  "subject": "Tu resultado del test de IA: {profile}",
-  "htmlBody": "<p>Hola {name},</p><p>Tu resultado ya está listo.</p><p><strong>Tu perfil al usar IA es:</strong> {profile}</p><p>Para consultar tu informe completo visita este enlace:</p><p><a href=\"{resultUrl}\">{resultUrl}</a></p><p>Gracias por completar el test.</p>",
-  "textBody": "Hola {name},\n\nTu resultado ya está listo.\n\nTu perfil al usar IA es: {profile}\n\nConsulta tu informe completo acá:\n{resultUrl}\n\nGracias por completar el test."
+  "fromEmail": "email@patriciaemiguel.com",
+  "subject": "Tu resultado del test de IA",
+  "htmlBody": "<p>Hola {name},</p><p>Ya está listo el resultado del test que hiciste para descubrir tu perfil de usuario de IA.</p><p><strong>Según tus respuestas, el perfil que mejor describe tu forma de relacionarte con la inteligencia artificial es: </strong>{profile}.</p><p>Podrás encontrar tu informe completo en este enlace:</p><p><a href=\"{resultUrl}\">{resultUrl}</a></p><p>Gracias por completar el test.</p>",
+  "textBody": "Hola {name},\n\nYa está listo el resultado del test que hiciste para descubrir tu perfil de usuario de IA.\n\nSegún tus respuestas, el perfil que mejor describe tu forma de relacionarte con la inteligencia artificial es: {profile}\n\nPodrás encontrar tu informe completo acá:\n{resultUrl}\n\nGracias por completar el test."
 }
