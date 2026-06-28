@@ -592,3 +592,108 @@ h1 {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
+
+.submission-success {
+  gap: 28px;
+}
+
+.submission-success__header {
+  justify-items: center;
+  text-align: center;
+}
+
+.success-icon {
+  display: grid;
+  place-items: center;
+  width: 52px;
+  height: 52px;
+  margin: 0 auto 4px;
+  border-radius: 999px;
+  background: rgba(14, 122, 109, 0.14);
+  color: var(--primary);
+}
+
+.success-icon svg {
+  width: 24px;
+  height: 24px;
+}
+
+.submission-success__title {
+  font-family: "Plus Jakarta Sans", sans-serif;
+  font-size: clamp(2rem, 4vw, 2.4rem);
+}
+
+.submission-success__subtitle {
+  margin: 0;
+  font-size: 1.2rem;
+  font-weight: 700;
+}
+
+.submission-success__header .screen-copy {
+  max-width: 58ch;
+}
+
+.submission-success__message-title {
+  margin-bottom: 12px;
+  font-family: "Plus Jakarta Sans", sans-serif;
+  font-size: 1.1rem;
+  font-weight: 800;
+}
+
+.submission-success__message-copy {
+  margin: 0;
+  color: var(--text-soft);
+  line-height: 1.65;
+}
+
+.submission-success__share {
+  display: grid;
+  gap: 14px;
+}
+
+.submission-success__share-label {
+  margin: 0;
+  text-align: center;
+  font-weight: 700;
+}
+
+.share-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  justify-content: center;
+}
+
+.share-button {
+  gap: 8px;
+  flex: 1;
+  min-width: 100%;
+  max-width: 180px;
+  padding-left: 10px;
+  padding-right: 10px;
+  font-size: 0.88rem;
+}
+
+.share-button svg {
+  width: 18px;
+  height: 18px;
+}
+
+.share-button--whatsapp svg {
+  color: #25d366;
+}
+
+.share-button--facebook svg {
+  color: #1877F2;
+}
+
+.submission-success__footer {
+  padding-top: 8px;
+  border-top: 1px solid var(--border);
+}
+
+@media (min-width: 720px) {
+  .share-button {
+    min-width: auto;  /* deja de forzar columna en desktop */
+  }
+}

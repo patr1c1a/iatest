@@ -267,9 +267,7 @@ async function handleSubmit(event) {
 
     window.localStorage.removeItem(runtime.appConfig.storage.progressKey);
 
-    const nextUrl = new URL("result.html", window.location.href);
-    nextUrl.searchParams.set("t", response.token);
-    window.location.assign(nextUrl.toString());
+    window.location.assign("submission-success.html");
   } catch (error) {
     runtime.isSubmitting = false;
     renderCurrentStage(
@@ -631,13 +629,13 @@ function renderTieBreakerScreen(feedbackMessage = "", feedbackType = "") {
 
 function renderLeadScreen(feedbackMessage = "", feedbackType = "") {
   const submittingMessage = runtime.isSubmitting
-    ? "Se está guardando tu resultado y preparando tu enlace personalizado."
+    ? "Se está enviando tu resultado personalizado a tu correo electrónico."
     : "";
 
   appRoot.innerHTML = `
     <section class="screen">
       <div class="screen-header">
-        <p class="screen-kicker">Desbloquea tu resultado</p>
+        <p class="screen-kicker">Recibir tu resultado</p>
         <h2>Ingresa tus datos para ver tu informe completo</h2>
         <p class="screen-copy">
           Tu perfil ya fue calculado. Completa este formulario para recibir tu resultado.
@@ -699,7 +697,7 @@ function renderLeadScreen(feedbackMessage = "", feedbackType = "") {
             Volver
           </button>
           <button type="submit" class="button" ${runtime.isSubmitting ? "disabled" : ""}>
-            ${runtime.isSubmitting ? "Enviando..." : "Ver mi resultado"}
+            ${runtime.isSubmitting ? "Enviando..." : "Recibir mi resultado por email"}
           </button>
         </div>
       </form>
