@@ -7,11 +7,8 @@ import {
 } from "./utils.js";
 
 const appRoot = document.querySelector("#app");
-const progressLabel = document.querySelector("#progressLabel");
-const progressDetail = document.querySelector("#progressDetail");
 const progressFill = document.querySelector("#progressFill");
-const progressPanel = document.querySelector(".progress-panel");
-const restartButton = document.querySelector("[data-action='restart-test']");
+const questionCounter = document.querySelector("#questionCounter");
 
 const dataUrls = {
   app: "data/app.json",
@@ -140,7 +137,9 @@ function resetState() {
 
 function bindGlobalEvents() {
   appRoot.addEventListener("click", handleClick);
-  progressPanel.addEventListener("click", handleClick);
+  document
+  .querySelector(".site-header")
+  .addEventListener("click", handleClick);
   appRoot.addEventListener("change", handleChange);
   appRoot.addEventListener("input", handleInput);
   appRoot.addEventListener("submit", handleSubmit);
@@ -190,7 +189,11 @@ function handleChange(event) {
     runtime.state.tiedProfiles = [];
     runtime.state.tieBreakerChoice = "";
     persistState();
-    renderCurrentStage();
+
+    setTimeout(() => {
+      goToNextStep();
+    }, 180);
+
     return;
   }
 
@@ -198,7 +201,10 @@ function handleChange(event) {
     runtime.state.tieBreakerChoice = radioInput.value;
     runtime.state.finalProfile = radioInput.value;
     persistState();
-    renderCurrentStage();
+
+    setTimeout(() => {
+      goToNextStep();
+    }, 180);
   }
 }
 
@@ -434,39 +440,31 @@ function navigateToStage() {
 }
 
 function updateProgress() {
-  let label = "Listo para comenzar";
-  let detail = "10 preguntas por responder.";
-  let percentage = 0;
-
-  if (runtime.state.stage === "question") {
-    label = `Pregunta ${runtime.state.currentQuestionIndex + 1} de ${runtime.questions.length}`;
-    detail = "Es posible retroceder en cualquier momento y cambiar tus respuestas.";
-    percentage = ((runtime.state.currentQuestionIndex + 1) / runtime.questions.length) * 100;
-  }
-
-  if (runtime.state.stage === "tie") {
-    label = "Desempate final";
-    detail = "Tus respuestas quedaron muy cerca entre dos perfiles.";
-    percentage = 100;
-  }
-
-  if (runtime.state.stage === "lead") {
-    label = "Último paso";
-    detail = "Completa tus datos para desbloquear tu resultado personalizado.";
-    percentage = 100;
-  }
-
-  progressLabel.textContent = label;
-  progressDetail.textContent = detail;
-  progressFill.style.width = `${percentage}%`;
 
   const isIntro = runtime.state.stage === "intro";
 
   document.querySelector(".site-header").style.display =
     isIntro ? "none" : "";
 
-  restartButton.style.display =
-    isIntro ? "none" : "";
+  if (isIntro) {
+    return;
+  }
+
+  let current = runtime.state.currentQuestionIndex + 1;
+
+  if (runtime.state.stage === "tie") {
+    current = runtime.questions.length;
+  }
+
+  if (runtime.state.stage === "lead") {
+    current = runtime.questions.length;
+  }
+
+  questionCounter.textContent =
+    `${Math.min(current, runtime.questions.length)}/${runtime.questions.length}`;
+
+  progressFill.style.width =
+    `${(current / runtime.questions.length) * 100}%`;
 }
 
 function renderIntroScreen() {
@@ -542,8 +540,8 @@ function renderQuestionScreen(feedbackMessage = "", feedbackType = "") {
             value="${escapeHtml(option.profile)}"
             ${isSelected ? "checked" : ""}
           />
-          <span class="option-card-title">Opción ${index + 1}</span>
-          <span class="option-card-body">${escapeHtml(option.text)}</span>
+          <span class="option-card-body">
+          <span class="option-arrow">▶</span>${escapeHtml(option.text)}</span>
         </label>
       `;
     })
@@ -563,14 +561,6 @@ function renderQuestionScreen(feedbackMessage = "", feedbackType = "") {
         ${optionsMarkup}
       </fieldset>
 
-      <div class="button-row">
-        <button type="button" class="button-ghost" data-action="previous-step">
-          Volver
-        </button>
-        <button type="button" class="button" data-action="next-question">
-          ${runtime.state.currentQuestionIndex === runtime.questions.length - 1 ? "Ver paso final" : "Siguiente"}
-        </button>
-      </div>
     </section>
   `;
 }
@@ -596,8 +586,8 @@ function renderTieBreakerScreen(feedbackMessage = "", feedbackType = "") {
             value="${escapeHtml(profileKey)}"
             ${isSelected ? "checked" : ""}
           />
-          <span class="option-card-title">Opción ${index + 1}</span>
-          <span class="option-card-body">${escapeHtml(tieData.options[profileKey] || "")}</span>
+          <span class="option-card-body">
+          <span class="option-arrow">▶</span>${escapeHtml(tieData.options[profileKey] || "")}</span>
         </label>
       `;
     })
@@ -621,17 +611,12 @@ function renderTieBreakerScreen(feedbackMessage = "", feedbackType = "") {
       </fieldset>
 
       <div class="button-row">
-        <button type="button" class="button-ghost" data-action="previous-step">
-          Volver
-        </button>
-        <button
-          type="button"
-          class="button"
-          data-action="next-question"
-          ${runtime.state.tieBreakerChoice ? "" : "disabled"}
-        >
-          Continuar
-        </button>
+          <button
+              type="button"
+              class="button-ghost"
+              data-action="previous-step">
+              Volver
+          </button>
       </div>
     </section>
   `;

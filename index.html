@@ -25,28 +25,32 @@
 
     <div class="page-shell">
       <header class="site-header" style="display:none;">
-        <section
-          class="progress-panel"
-          aria-label="Progreso del test"
-        >
-          <div class="progress-copy">
-            <p id="progressLabel" class="progress-label"></p>
 
-            <p id="progressDetail" class="progress-detail"></p>
+      <div class="test-header">
 
-            <button
-              type="button"
-              class="button-ghost"
-              data-action="restart-test">
-              Empezar de nuevo
-            </button>
-          </div>
+        <button
+          type="button"
+          class="header-back"
+          data-action="previous-step"
+          aria-label="Volver">
+          ←
+        </button>
 
-          <div class="progress-bar" aria-hidden="true">
-            <div id="progressFill" class="progress-fill"></div>
-          </div>
-        </section>
-      </header>
+        <div class="header-title">
+          Test gratuito: ¿Cómo te relacionas con la IA?
+        </div>
+
+        <div id="questionCounter" class="header-counter">
+          1/10
+        </div>
+
+      </div>
+
+      <div class="progress-bar" aria-hidden="true">
+        <div id="progressFill" class="progress-fill"></div>
+      </div>
+
+    </header>
 
       <main id="app" class="app-card" aria-live="polite" aria-busy="true"></main>
     </div>
