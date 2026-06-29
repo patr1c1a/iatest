@@ -268,7 +268,7 @@ h1 {
 .meta-value,
 .section-copy {
     color: var(--text-soft);
-    font-size: 1.05rem;
+    font-size: 1.2rem;
     line-height: 1.75;
 }
 
@@ -289,7 +289,7 @@ h1 {
   background: rgba(14, 122, 109, 0.08);
   color: var(--primary-strong);
   font-weight: 800;
-  font-size:1rem;
+  font-size:1.2rem;
 }
 
 .option-list {
@@ -385,7 +385,7 @@ h1 {
 .header-title {
     text-align:center;
     font-weight:700;
-    font-size:1rem;
+    font-size:1.3rem;
     text-decoration:none;
     color:var(--primary-strong);
 }
@@ -495,6 +495,7 @@ h1 {
   padding: 12px 16px;
   border-radius: 999px;
   text-decoration: none;
+  font-size: 1.2rem;
 }
 
 .grid-two {
@@ -509,6 +510,7 @@ h1 {
 
 .field-label {
   font-weight: 700;
+  font-size: 1.2rem;
 }
 
 .field-input {
@@ -723,7 +725,7 @@ h1 {
 .submission-success__message-title {
   margin-bottom: 12px;
   font-family: "Plus Jakarta Sans", sans-serif;
-  font-size: 1.1rem;
+  font-size: 1.5rem;
   font-weight: 800;
 }
 
@@ -731,6 +733,7 @@ h1 {
   margin: 0;
   color: var(--text-soft);
   line-height: 1.65;
+  font-size: 1.3rem;
 }
 
 .submission-success__share {
