@@ -460,9 +460,10 @@ function updateProgress() {
   progressDetail.textContent = detail;
   progressFill.style.width = `${percentage}%`;
 
-  const hasProgress =
-  runtime.state.stage !== "intro" || Object.keys(runtime.state.answers).length > 0;
-  restartButton.style.display = hasProgress ? "" : "none";
+  const showProgress =
+  runtime.state.stage !== "intro";
+  progressPanel.style.display = showProgress ? "" : "none";
+  restartButton.style.display = showProgress ? "" : "none";
 }
 
 function renderIntroScreen() {
