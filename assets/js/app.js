@@ -140,6 +140,7 @@ function bindGlobalEvents() {
   document
   .querySelector(".site-header")
   .addEventListener("click", handleClick);
+  appRoot.addEventListener("click", handleOptionClick);
   appRoot.addEventListener("change", handleChange);
   appRoot.addEventListener("input", handleInput);
   appRoot.addEventListener("submit", handleSubmit);
@@ -172,6 +173,27 @@ function handleClick(event) {
       break;
     default:
       break;
+  }
+}
+
+function handleOptionClick(event) {
+  const radioInput = event.target.closest("input[type='radio']");
+
+  if (!radioInput) {
+    return;
+  }
+
+  if (radioInput.name.startsWith("question-")) {
+    if (runtime.state.answers[radioInput.name.replace("question-", "")] === radioInput.value) {
+      window.setTimeout(goToNextStep, 100);
+    }
+  }
+
+  if (
+    radioInput.name === "tie-breaker" &&
+    runtime.state.tieBreakerChoice === radioInput.value
+  ) {
+    window.setTimeout(goToNextStep, 100);
   }
 }
 
