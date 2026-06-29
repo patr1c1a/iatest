@@ -504,7 +504,7 @@ function renderIntroScreen() {
       </h1>
 
       <p class="intro-description">
-        Una evaluación breve para identificar tu perfil de uso de la inteligencia artificial y recibir un informe personalizado.
+        Una evaluación breve para identificar tu perfil como usuario de inteligencia artificial y recibir tu resultado personalizado.
       </p>
 
       <div class="intro-divider"></div>
@@ -698,7 +698,7 @@ function renderLeadScreen(feedbackMessage = "", feedbackType = "") {
 
         <div class="button-row">
           <button type="submit" class="button" ${runtime.isSubmitting ? "disabled" : ""}>
-            ${runtime.isSubmitting ? "Enviando..." : "Recibir mi resultado por email"}
+            ${runtime.isSubmitting ? "Enviando..." : "Recibir resultado por email"}
           </button>
         </div>
       </form>
