@@ -52,85 +52,170 @@ async function initialize() {
 }
 
 function renderResult(record, profile, cta, appConfig) {
-  const metaItems = [
-    { label: "Nombre", value: record.name },
-    { label: "Email", value: record.email },
-    { label: "País", value: record.country || "" },
-    { label: "Fecha de generación", value: formatDate(record.timestamp) },
-  ].filter((item) => item.value);
+  resultRoot.setAttribute("aria-busy", "false");
 
   const strengthsMarkup = profile.strengths
     .map((item) => `<li>${escapeHtml(item)}</li>`)
     .join("");
 
-  resultRoot.setAttribute("aria-busy", "false");
   resultRoot.innerHTML = `
-    <section class="result-card result-hero">
-      <span class="hero-badge">Perfil asignado</span>
-      <h2 class="result-title">${escapeHtml(profile.label)}</h2>
-      <p class="section-copy">${escapeHtml(profile.description)}</p>
-      <div class="meta-grid">
-        ${metaItems
-          .map(
-            (item) => `
-              <article class="meta-item">
-                <span class="meta-label">${escapeHtml(item.label)}</span>
-                <p class="meta-value">${escapeHtml(item.value)}</p>
-              </article>
-            `,
-          )
-          .join("")}
+    <header class="result-page-header">
+
+      <div class="result-meta">
+
+        <div class="result-meta-item">
+          <span class="meta-label">Nombre</span>
+          <span class="meta-value">${escapeHtml(record.name)}</span>
+        </div>
+
+        <div class="result-meta-item">
+          <span class="meta-label">Email</span>
+          <span class="meta-value">${escapeHtml(record.email)}</span>
+        </div>
+
+        <div class="result-meta-item">
+          <span class="meta-label">Fecha</span>
+          <span class="meta-value">${formatDate(record.timestamp)}</span>
+        </div>
+
       </div>
-      <div class="button-row">
-        <button type="button" class="button" id="downloadPdf">Descargar PDF</button>
-      </div>
+
+    </header>
+
+
+    <section class="result-section result-section--hero">
+      <h1 class="result-profile-name">
+        ${escapeHtml(profile.label)}
+      </h1>
+
+      <p class="result-profile-description">
+        ${escapeHtml(profile.description)}
+      </p>
+
     </section>
 
-    <section class="result-card">
-      <div class="detail-grid">
-        <article class="detail-card">
-          <h3 class="section-title">Fortalezas</h3>
-          <ul class="bullet-list">${strengthsMarkup}</ul>
-        </article>
-        <article class="detail-card detail-card--accent">
-          <h3 class="section-title">Riesgo principal</h3>
-          <p class="section-copy">${escapeHtml(profile.primaryRisk)}</p>
-        </article>
-        <article class="detail-card">
-          <h3 class="section-title">Frase característica</h3>
-          <p class="section-copy">${escapeHtml(profile.characteristicStatement)}</p>
-        </article>
-        <article class="detail-card">
-          <h3 class="section-title">Oportunidades poco aprovechadas</h3>
-          <p class="section-copy">${escapeHtml(profile.underutilizedOpportunities)}</p>
-        </article>
-      </div>
+
+    <section class="result-section">
+
+      <p class="result-intro">
+        Si este perfil te representa, probablemente alguna vez pensaste:
+      </p>
+
+      <blockquote class="profile-quote">
+        “${escapeHtml(profile.characteristicStatement)}”
+      </blockquote>
+
     </section>
 
-    <aside class="cta-card">
-      <div>
-        <p class="screen-kicker">${escapeHtml(cta.kicker)}</p>
-        <h3 class="section-title">${escapeHtml(cta.title)}</h3>
-        <p class="section-copy">${escapeHtml(cta.description)}</p>
-      </div>
-      <div class="detail-card">
-        <h3 class="section-title">Siguiente paso recomendado</h3>
-        <p class="section-copy">${escapeHtml(profile.nextLearningStep)}</p>
-      </div>
-      <div class="cta-actions">
-        <a class="cta-button" href="${escapeHtml(cta.primaryButton.url)}" target="_blank" rel="noreferrer">
-          ${escapeHtml(cta.primaryButton.label)}
+
+    <section class="result-section">
+
+      <h2>Lo que mejor haces</h2>
+
+      <ul class="bullet-list">
+        ${strengthsMarkup}
+      </ul>
+
+    </section>
+
+
+    <section class="result-section">
+
+      <h2>Lo que podría frenarte</h2>
+
+      <p class="section-copy">
+        ${escapeHtml(profile.primaryRisk)}
+      </p>
+
+    </section>
+
+
+    <section class="result-section">
+
+      <h2>Lo que probablemente todavía no estés aprovechando</h2>
+
+      <p class="section-copy">
+        ${escapeHtml(profile.underutilizedOpportunities)}
+      </p>
+
+    </section>
+
+
+    <section class="result-section">
+
+      <h2>Qué te conviene aprender ahora</h2>
+
+      <p class="section-copy">
+        ${escapeHtml(profile.nextLearningStep)}
+      </p>
+
+    </section>
+
+
+    <section class="result-section result-section--cta">
+
+      <p class="screen-kicker">
+        ${escapeHtml(cta.kicker)}
+      </p>
+
+      <h2>
+        ${escapeHtml(cta.title)}
+      </h2>
+
+      <p class="section-copy">
+        ${escapeHtml(cta.description)}
+      </p>
+
+      <div class="cta-links">
+
+        <a
+          class="button-ghost"
+          href="${escapeHtml(cta.instagram.url)}"
+          target="_blank"
+          rel="noreferrer">
+          ${escapeHtml(cta.instagram.label)}
         </a>
-        <a class="button-ghost" href="${escapeHtml(cta.secondaryButton.url)}">
-          ${escapeHtml(cta.secondaryButton.label)}
+
+        <a
+          class="button-ghost"
+          href="${escapeHtml(cta.facebook.url)}"
+          target="_blank"
+          rel="noreferrer">
+          ${escapeHtml(cta.facebook.label)}
         </a>
+
+        <a
+          class="button-ghost"
+          href="${escapeHtml(cta.webSite.url)}"
+          target="_blank"
+          rel="noreferrer">
+          ${escapeHtml(cta.webSite.label)}
+        </a>
+
       </div>
-    </aside>
+
+    </section>
+
+
+    <section class="result-section result-section--download">
+
+      <button
+        type="button"
+        class="button"
+        id="downloadPdf">
+
+        Descargar informe en PDF
+
+      </button>
+
+    </section>
   `;
 
-  document.querySelector("#downloadPdf")?.addEventListener("click", () => {
-    downloadPdf(record, profile, appConfig);
-  });
+  document
+    .querySelector("#downloadPdf")
+    ?.addEventListener("click", () => {
+      downloadPdf(record, profile, appConfig);
+    });
 }
 
 function downloadPdf(record, profile, appConfig) {

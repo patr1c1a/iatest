@@ -1,15 +1,19 @@
 {
   "cta": {
     "kicker": "Siguiente paso",
-    "title": "Si te interesa seguir aprendiendo...",
-    "description": "Usa este resultado como punto de partida para dar el siguiente paso, experimentar y aprender más sobre IA.",
-    "primaryButton": {
-      "label": "Suscribirse para recibir novedades",
-      "url": "https://programaciondesdecero.eo.page/lista"
+    "title": "Si te interesa seguir aprendiendo sobre IA...",
+    "description": "En estos canales podrás enterarte de nuevos recursos educativos, clases y cursos. Creo contenidos para todos: quienes no tienen conocimientos técnicos y quienes ya son informáticos.",
+    "instagram": {
+      "label": "Instagram",
+      "url": "https://www.instagram.com/programaciondesdecero/"
     },
-    "secondaryButton": {
-      "label": "Volver al inicio",
-      "url": "index.html"
+    "facebook": {
+      "label": "Facebook",
+      "url": "https://www.facebook.com/ProgramacionDesdeCer0"
+    },
+    "webSite": {
+      "label": "Sitio web",
+      "url": "https://www.patriciaemiguel.com"
     }
   }
 }
