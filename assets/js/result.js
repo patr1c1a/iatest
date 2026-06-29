@@ -167,29 +167,58 @@ function renderResult(record, profile, cta, appConfig) {
       </p>
 
       <div class="cta-links">
-
         <a
-          class="button-ghost"
+          class="cta-link"
           href="${escapeHtml(cta.instagram.url)}"
           target="_blank"
           rel="noreferrer">
+
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <rect x="3" y="3" width="18" height="18" rx="5" fill="none" stroke="currentColor" stroke-width="2"/>
+            <circle cx="12" cy="12" r="4" fill="none" stroke="currentColor" stroke-width="2"/>
+            <circle cx="17.5" cy="6.5" r="1.2" fill="currentColor"/>
+          </svg>
+
           ${escapeHtml(cta.instagram.label)}
+
         </a>
 
+        <span class="cta-divider">•</span>
+
         <a
-          class="button-ghost"
+          class="cta-link"
           href="${escapeHtml(cta.facebook.url)}"
           target="_blank"
           rel="noreferrer">
+
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path
+              fill="currentColor"
+              d="M14 8h2V5h-2c-2.2 0-4 1.8-4 4v2H8v3h2v5h3v-5h2.3l.7-3H13V9c0-.6.4-1 1-1z"/>
+          </svg>
+
           ${escapeHtml(cta.facebook.label)}
+
         </a>
 
+        <span class="cta-divider">•</span>
+
         <a
-          class="button-ghost"
+          class="cta-link"
           href="${escapeHtml(cta.webSite.url)}"
           target="_blank"
           rel="noreferrer">
+
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="2"/>
+            <path d="M3 12h18" stroke="currentColor" stroke-width="2"/>
+            <path d="M12 3c3 3 3 15 0 18M12 3c-3 3-3 15 0 18"
+                  stroke="currentColor"
+                  stroke-width="2"/>
+          </svg>
+
           ${escapeHtml(cta.webSite.label)}
+
         </a>
 
       </div>

@@ -723,6 +723,43 @@ h1 {
   border-top: 1px solid var(--border);
 }
 
+.cta-links{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    flex-wrap:wrap;
+    gap:.85rem;
+    margin-top:2rem;
+}
+
+.cta-link{
+    display:inline-flex;
+    align-items:center;
+    gap:.45rem;
+
+    text-decoration:none;
+
+    color:var(--text-soft);
+
+    font-weight:600;
+
+    transition:.18s;
+}
+
+.cta-link:hover{
+    color:var(--primary);
+}
+
+.cta-link svg{
+    width:18px;
+    height:18px;
+    flex:none;
+}
+
+.cta-divider{
+    color:rgba(255,255,255,.28);
+    user-select:none;
+}
 
 @media (min-width: 720px) {
   .page-shell {
