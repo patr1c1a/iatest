@@ -49,10 +49,19 @@ async function initialize() {
     const params = new URLSearchParams(window.location.search);
     if (params.get("restart") === "1") {
       window.localStorage.removeItem(runtime.appConfig.storage.progressKey);
+      window.history.replaceState({}, "", "index.html");
+    }
+
+    const showHome = params.get("home") === "1";
+
+    runtime.state = restoreOrCreateState();
+
+    if (showHome) {
+      runtime.state.stage = "intro";
+      persistState();
 
       window.history.replaceState({}, "", "index.html");
     }
-    runtime.state = restoreOrCreateState();
 
     bindGlobalEvents();
     navigateToStage();
@@ -165,7 +174,9 @@ function handleClick(event) {
   switch (action) {
     case "start-test":
       runtime.state.stage = "question";
-      runtime.state.currentQuestionIndex = 0;
+      if (Object.keys(runtime.state.answers).length === 0) {
+        runtime.state.currentQuestionIndex = 0;
+      }
       persistState();
       navigateToStage();
       break;
