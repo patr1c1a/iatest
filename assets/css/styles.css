@@ -126,7 +126,7 @@ a {
 .eyebrow {
   margin: 0 0 10px;
   color: var(--primary);
-  font-size: 0.82rem;
+  font-size: 1.5rem;
   font-weight: 800;
   letter-spacing: 0.18em;
   text-transform: uppercase;
@@ -142,6 +142,42 @@ h3 {
 
 h1 {
   font-size: clamp(2.2rem, 5vw, 4.3rem);
+}
+
+.intro-screen{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    max-width:760px;
+    margin:5rem auto;
+    padding:1rem;
+}
+
+.intro-title{
+    margin:1rem 0 1.5rem;
+    font-size:clamp(2.8rem,5vw,4rem);
+    line-height:1.05;
+}
+
+.intro-description{
+    max-width:42rem;
+    font-size:clamp(0.3rem,3.5vw,1.6rem);
+    line-height:1.8;
+    color:var(--text-secondary);
+}
+
+.intro-divider{
+    width:100%;
+    max-width:520px;
+    height:1px;
+    background:rgba(255,255,255,.12);
+    margin:3rem 0;
+}
+
+.intro-actions{
+    justify-content:center;
 }
 
 .lede {
@@ -565,51 +601,6 @@ h1 {
   }
 }
 
-@media (min-width: 720px) {
-  .page-shell {
-    padding: 36px 24px 72px;
-  }
-
-  .site-header {
-    grid-template-columns: minmax(0, 1.4fr) minmax(320px, 0.8fr);
-    align-items: end;
-  }
-
-  .site-header--compact {
-    grid-template-columns: minmax(0, 1.4fr) auto;
-    align-items: center;
-  }
-
-  .grid-two,
-  .meta-grid,
-  .detail-grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-
-  .detail-grid--wide {
-    grid-template-columns: 1.2fr 0.8fr;
-  }
-
-  .app-card {
-    padding: 34px;
-  }
-}
-
-@media (min-width: 980px) {
-  .page-shell--result .result-layout {
-    grid-template-columns: minmax(0, 1.2fr) minmax(300px, 0.8fr);
-    align-items: start;
-  }
-
-  .page-shell--result .result-layout > :first-child {
-    grid-column: 1 / -1;
-  }
-
-  .page-shell--result .detail-grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-}
-
 .submission-success {
   gap: 28px;
 }
@@ -710,7 +701,50 @@ h1 {
 }
 
 @media (min-width: 720px) {
-  .share-button {
-    min-width: auto;  /* deja de forzar columna en desktop */
+  .page-shell {
+    padding: 36px 24px 72px;
+  }
+
+  .site-header {
+    grid-template-columns: minmax(0, 1.4fr) minmax(320px, 0.8fr);
+    align-items: end;
+  }
+
+  .site-header--compact {
+    grid-template-columns: minmax(0, 1.4fr) auto;
+    align-items: center;
+  }
+
+  .grid-two,
+  .meta-grid,
+  .detail-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .detail-grid--wide {
+    grid-template-columns: 1.2fr 0.8fr;
+  }
+
+  .app-card {
+    padding: 34px;
+  }
+
+    .share-button {
+    min-width: auto;
+  }
+}
+
+@media (min-width: 980px) {
+  .page-shell--result .result-layout {
+    grid-template-columns: minmax(0, 1.2fr) minmax(300px, 0.8fr);
+    align-items: start;
+  }
+
+  .page-shell--result .result-layout > :first-child {
+    grid-column: 1 / -1;
+  }
+
+  .page-shell--result .detail-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }

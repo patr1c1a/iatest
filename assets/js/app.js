@@ -460,48 +460,57 @@ function updateProgress() {
   progressDetail.textContent = detail;
   progressFill.style.width = `${percentage}%`;
 
-  const showProgress =
-  runtime.state.stage !== "intro";
-  progressPanel.style.display = showProgress ? "" : "none";
-  restartButton.style.display = showProgress ? "" : "none";
+  const isIntro = runtime.state.stage === "intro";
+
+  document.querySelector(".site-header").style.display =
+    isIntro ? "none" : "";
+
+  restartButton.style.display =
+    isIntro ? "none" : "";
 }
 
 function renderIntroScreen() {
   const hasProgress = Object.keys(runtime.state.answers).length > 0;
 
   appRoot.innerHTML = `
-    <section class="screen">
-      <div class="screen-header">
-        <p class="screen-kicker">Evaluación personal</p>
-        <h2>Conoce tu perfil de usuario de inteligencia artificial</h2>
-      </div>
+    <section class="intro-screen">
 
-      <div class="detail-grid">
-        <article class="detail-card">
-          <h3 class="section-title">Qué vas a recibir</h3>
-          <p class="section-copy">
-            Un resultado adaptado a tu perfil personal, incluyendo tus fortalezas, riesgos
-            y el siguiente paso de aprendizaje que te ayudará a seguir avanzando.
-          </p>
-        </article>
-        <article class="detail-card detail-card--accent">
-          <h3 class="section-title">Cómo funciona</h3>
-          <p class="section-copy">
-            Verás una pregunta por pantalla (son 10 preguntas). Al finalizar, podrás recibir tu resultado personalizado de forma gratuita.
-          </p>
-        </article>
-      </div>
+      <p class="eyebrow">
+        Test gratuito
+      </p>
 
-      <div class="button-row">
-        <button type="button" class="button" data-action="start-test">
-          ${hasProgress ? "Continuar test" : "Comenzar test"}
+      <h1 class="intro-title">
+        ¿Cómo te relacionas con la IA?
+      </h1>
+
+      <p class="intro-description">
+        Una evaluación breve para identificar tu perfil de uso de la inteligencia artificial y recibir un informe personalizado.
+      </p>
+
+      <div class="intro-divider"></div>
+
+      <div class="button-row intro-actions">
+        <button
+          type="button"
+          class="button"
+          data-action="start-test">
+          ${hasProgress ? "Continuar" : "Comenzar"}
         </button>
+
         ${
           hasProgress
-            ? `<button type="button" class="button-ghost" data-action="restart-test">Empezar de nuevo</button>`
+            ? `
+            <button
+              type="button"
+              class="button-ghost"
+              data-action="restart-test">
+              Empezar de nuevo
+            </button>
+          `
             : ""
         }
       </div>
+
     </section>
   `;
 }
