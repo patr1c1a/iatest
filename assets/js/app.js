@@ -45,6 +45,13 @@ async function initialize() {
     runtime.questions = questionsData.questions;
     runtime.profiles = profilesData.profiles;
     runtime.tieBreakers = tieBreakersData.tieBreakers;
+    
+    const params = new URLSearchParams(window.location.search);
+    if (params.get("restart") === "1") {
+      window.localStorage.removeItem(runtime.appConfig.storage.progressKey);
+
+      window.history.replaceState({}, "", "index.html");
+    }
     runtime.state = restoreOrCreateState();
 
     bindGlobalEvents();
