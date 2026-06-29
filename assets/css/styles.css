@@ -250,6 +250,7 @@ h1 {
     font-size:clamp(1.6rem,3vw,2rem);
     line-height:1.18;
     max-width:900px;
+    padding: 24px 24px;
 }
 
 .screen-kicker {
@@ -288,7 +289,6 @@ h1 {
   background: rgba(14, 122, 109, 0.08);
   color: var(--primary-strong);
   font-weight: 800;
-  padding:12px 18px;
   font-size:1rem;
 }
 
@@ -368,21 +368,42 @@ h1 {
 .header-back {
     background:none;
     border:none;
-    color:var(--text-primary);
-    font-size:1.6rem;
+    color:var(--primary-strong);
+    font-size:1.7rem;
     cursor:pointer;
+}
+
+.header-back:hover{
+    color:var(--primary);
+}
+
+.header-back svg {
+    width: 28px;
+    height: 28px;
 }
 
 .header-title {
     text-align:center;
     font-weight:700;
     font-size:1rem;
+    text-decoration:none;
+    color:var(--primary-strong);
+}
+
+.header-title:hover{
+    color:var(--primary);
+}
+
+.header-title:focus-visible{
+    outline:2px solid var(--primary);
+    outline-offset:4px;
+    border-radius:4px;
 }
 
 .header-counter {
     text-align:right;
     font-weight:600;
-    color:var(--text-secondary);
+    color:var(--primary-strong);
 }
 
 .option-card-title {
