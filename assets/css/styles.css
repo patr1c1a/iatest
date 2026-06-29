@@ -255,7 +255,7 @@ h1 {
 
 .screen-kicker {
   margin: 0;
-  color: #ffb07a;
+  color: var(--secondary);
   font-size: 0.92rem;
   font-weight: 800;
   text-transform: uppercase;

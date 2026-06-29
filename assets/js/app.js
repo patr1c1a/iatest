@@ -645,10 +645,7 @@ function renderLeadScreen(feedbackMessage = "", feedbackType = "") {
     <section class="screen">
       <div class="screen-header">
         <p class="screen-kicker">Recibir tu resultado</p>
-        <h2>Ingresa tus datos para ver tu informe completo</h2>
-        <p class="screen-copy">
-          Tu perfil ya fue calculado. Completa este formulario para recibir tu resultado.
-        </p>
+        <h2>Ingresa tus datos para recibir tu informe completo</h2>
       </div>
 
       ${renderFeedback(feedbackMessage, feedbackType)}
