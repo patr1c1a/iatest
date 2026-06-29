@@ -610,14 +610,6 @@ function renderTieBreakerScreen(feedbackMessage = "", feedbackType = "") {
         ${optionsMarkup}
       </fieldset>
 
-      <div class="button-row">
-          <button
-              type="button"
-              class="button-ghost"
-              data-action="previous-step">
-              Volver
-          </button>
-      </div>
     </section>
   `;
 }
@@ -686,11 +678,6 @@ function renderLeadScreen(feedbackMessage = "", feedbackType = "") {
         </div>
 
         <div class="button-row">
-          <button type="button" class="button-ghost" data-action="previous-step" ${
-            runtime.isSubmitting ? "disabled" : ""
-          }>
-            Volver
-          </button>
           <button type="submit" class="button" ${runtime.isSubmitting ? "disabled" : ""}>
             ${runtime.isSubmitting ? "Enviando..." : "Recibir mi resultado por email"}
           </button>
