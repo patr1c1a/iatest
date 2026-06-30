@@ -17,6 +17,14 @@ const dataUrls = {
 
 document.addEventListener("DOMContentLoaded", initialize);
 
+function formatShortDate(timestamp) {
+  return new Intl.DateTimeFormat("es", {
+    day: "numeric",
+    month: "long",
+    year: "numeric",
+  }).format(new Date(timestamp));
+}
+
 async function initialize() {
   renderLoadingState("Buscando tu resultado...");
 
@@ -60,30 +68,32 @@ function renderResult(record, profile, cta, appConfig) {
 
   resultRoot.innerHTML = `
     <header class="result-page-header">
+      <header class="result-page-header">
+        <div class="result-meta">
+          <p class="result-meta-title">
+            Resultado del test personalizado para:
+          </p>
 
-      <div class="result-meta">
+          <p class="result-meta-name">
+            ${escapeHtml(record.name)}
+          </p>
 
-        <div class="result-meta-item">
-          <span class="meta-label">Nombre</span>
-          <span class="meta-value">${escapeHtml(record.name)}</span>
+          <p class="result-meta-email">
+            ${escapeHtml(record.email)}
+          </p>
+
+          <p class="result-meta-date">
+            ${formatShortDate(record.timestamp)}
+          </p>
         </div>
-
-        <div class="result-meta-item">
-          <span class="meta-label">Email</span>
-          <span class="meta-value">${escapeHtml(record.email)}</span>
-        </div>
-
-        <div class="result-meta-item">
-          <span class="meta-label">Fecha</span>
-          <span class="meta-value">${formatDate(record.timestamp)}</span>
-        </div>
-
-      </div>
-
+      </header>
     </header>
 
-
     <section class="result-section result-section--hero">
+      <p class="result-profile-kicker">
+        Tu perfil de usuario de IA es:
+      </p>
+
       <h1 class="result-profile-name">
         ${escapeHtml(profile.label)}
       </h1>

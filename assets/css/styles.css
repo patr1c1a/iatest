@@ -761,6 +761,60 @@ h1 {
     user-select:none;
 }
 
+.result-meta{
+    display:flex;
+    flex-direction:column;
+    align-items:flex-start;
+    gap:.45rem;
+
+    margin:2.5rem 0 4rem;
+}
+
+.result-meta-title{
+    margin:0;
+
+    font-size:1rem;
+
+    color:var(--text-soft);
+
+    font-weight:600;
+}
+
+.result-meta-name{
+    margin:0;
+
+    font-size:1.45rem;
+
+    font-weight:700;
+
+    color:var(--text);
+}
+
+.result-meta-email,
+.result-meta-date{
+    margin:0;
+
+    color:var(--text-soft);
+
+    font-size:1rem;
+}
+
+.result-profile-kicker{
+    margin:0 0 1rem;
+
+    text-align:center;
+
+    color:var(--text-soft);
+
+    font-size:1.15rem;
+
+    font-weight:600;
+}
+
+.result-profile-name{
+    text-align:center;
+}
+
 @media (min-width: 720px) {
   .page-shell {
     padding: 36px 24px 72px;
