@@ -63,15 +63,22 @@ function renderResult(record, profile, cta, appConfig) {
   resultRoot.setAttribute("aria-busy", "false");
 
   const strengthsMarkup = profile.strengths
-    .map((item) => `<li>${escapeHtml(item)}</li>`)
-    .join("");
+  .map(
+    (item) => `
+      <li>
+        <span class="strength-check">✓</span>
+        <span>${escapeHtml(item)}</span>
+      </li>
+    `
+  )
+  .join("");
 
   resultRoot.innerHTML = `
     <header class="result-page-header">
       <header class="result-page-header">
         <div class="result-meta">
           <p class="result-meta-title">
-            Resultado del test personalizado para:
+            Resultado personalizado para:
           </p>
 
           <p class="result-meta-name">
@@ -89,90 +96,80 @@ function renderResult(record, profile, cta, appConfig) {
       </header>
     </header>
 
-    <section class="result-section result-section--hero">
-      <p class="result-profile-kicker">
-        Tu perfil de usuario de IA es:
-      </p>
-
-      <h1 class="result-profile-name">
-        ${escapeHtml(profile.label)}
-      </h1>
-
-      <p class="result-profile-description">
-        ${escapeHtml(profile.description)}
-      </p>
-
+    <section class="result-section">
+      <div class="profile-card">
+        <p class="result-profile-kicker">
+          Tu perfil de usuario de IA es:
+        </p>
+        <h1 class="result-profile-name">
+          ${escapeHtml(profile.label)}
+        </h1>
+        <p class="result-profile-description">
+          ${escapeHtml(profile.description)}
+        </p>
+      </div>
     </section>
 
+    <hr class="result-divider">
 
     <section class="result-section">
-
       <p class="result-intro">
         Si este perfil te representa, probablemente alguna vez pensaste:
       </p>
-
       <blockquote class="profile-quote">
         “${escapeHtml(profile.characteristicStatement)}”
       </blockquote>
-
     </section>
 
+    <hr class="result-divider">
 
     <section class="result-section">
-
       <h2>Lo que mejor haces</h2>
-
       <ul class="bullet-list">
         ${strengthsMarkup}
       </ul>
-
     </section>
 
-
     <section class="result-section">
-
       <h2>Lo que podría frenarte</h2>
-
       <p class="section-copy">
         ${escapeHtml(profile.primaryRisk)}
       </p>
-
     </section>
 
-
     <section class="result-section">
-
       <h2>Lo que probablemente todavía no estés aprovechando</h2>
-
       <p class="section-copy">
         ${escapeHtml(profile.underutilizedOpportunities)}
       </p>
-
     </section>
 
-
     <section class="result-section">
-
       <h2>Qué te conviene aprender ahora</h2>
-
       <p class="section-copy">
         ${escapeHtml(profile.nextLearningStep)}
       </p>
-
     </section>
 
+    <section class="result-section result-section--download">
+      <button
+        type="button"
+        class="button"
+        id="downloadPdf">
+        Descargar informe en PDF
+      </button>
+    </section>
+
+    <hr class="result-divider">
 
     <section class="result-section result-section--cta">
-
       <p class="screen-kicker">
         ${escapeHtml(cta.kicker)}
       </p>
-
-      <h2>
+      <h3>
         ${escapeHtml(cta.title)}
-      </h2>
-
-      <p class="section-copy">
+      </h3>
+      <p class="cta-description">
         ${escapeHtml(cta.description)}
       </p>
 
@@ -182,15 +179,12 @@ function renderResult(record, profile, cta, appConfig) {
           href="${escapeHtml(cta.instagram.url)}"
           target="_blank"
           rel="noreferrer">
-
           <svg viewBox="0 0 24 24" aria-hidden="true">
             <rect x="3" y="3" width="18" height="18" rx="5" fill="none" stroke="currentColor" stroke-width="2"/>
             <circle cx="12" cy="12" r="4" fill="none" stroke="currentColor" stroke-width="2"/>
             <circle cx="17.5" cy="6.5" r="1.2" fill="currentColor"/>
           </svg>
-
           ${escapeHtml(cta.instagram.label)}
-
         </a>
 
         <span class="cta-divider">•</span>
@@ -200,15 +194,12 @@ function renderResult(record, profile, cta, appConfig) {
           href="${escapeHtml(cta.facebook.url)}"
           target="_blank"
           rel="noreferrer">
-
           <svg viewBox="0 0 24 24" aria-hidden="true">
             <path
               fill="currentColor"
               d="M14 8h2V5h-2c-2.2 0-4 1.8-4 4v2H8v3h2v5h3v-5h2.3l.7-3H13V9c0-.6.4-1 1-1z"/>
           </svg>
-
           ${escapeHtml(cta.facebook.label)}
-
         </a>
 
         <span class="cta-divider">•</span>
@@ -218,7 +209,6 @@ function renderResult(record, profile, cta, appConfig) {
           href="${escapeHtml(cta.webSite.url)}"
           target="_blank"
           rel="noreferrer">
-
           <svg viewBox="0 0 24 24" aria-hidden="true">
             <circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="2"/>
             <path d="M3 12h18" stroke="currentColor" stroke-width="2"/>
@@ -226,27 +216,17 @@ function renderResult(record, profile, cta, appConfig) {
                   stroke="currentColor"
                   stroke-width="2"/>
           </svg>
-
           ${escapeHtml(cta.webSite.label)}
-
         </a>
-
       </div>
-
     </section>
 
+    <hr class="result-divider">
 
-    <section class="result-section result-section--download">
-
-      <button
-        type="button"
-        class="button"
-        id="downloadPdf">
-
-        Descargar informe en PDF
-
-      </button>
-
+    <section class="result-section">
+      <a class="ghost-link" href="index.html">
+          ← Hacer nuevamente el test
+      </a>
     </section>
   `;
 
