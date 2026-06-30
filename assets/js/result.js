@@ -257,7 +257,7 @@ function downloadPdf(record, profile, appConfig) {
 
   documentPdf.setFont("helvetica", "bold");
   documentPdf.setFontSize(22);
-  documentPdf.text("Informe de perfil de uso de IA", marginX, cursorY);
+  documentPdf.text("Resultado del test", marginX, cursorY);
   cursorY += 28;
 
   documentPdf.setFont("helvetica", "normal");
@@ -265,8 +265,7 @@ function downloadPdf(record, profile, appConfig) {
   const metaLines = [
     `Nombre: ${record.name}`,
     `Email: ${record.email}`,
-    `País: ${record.country || "No disponible"}`,
-    `Fecha de generación: ${formatDate(record.timestamp)}`,
+    `Fecha: ${formatDate(record.timestamp).replace(/ a las.*/, "")}`,
   ];
   metaLines.forEach((line) => {
     documentPdf.text(line, marginX, cursorY);
@@ -274,13 +273,26 @@ function downloadPdf(record, profile, appConfig) {
   });
 
   cursorY += 14;
-  cursorY = writeSection(documentPdf, "Perfil", profile.label, cursorY, marginX, usableWidth, pageHeight);
-  cursorY = writeSection(documentPdf, "Descripción", profile.description, cursorY, marginX, usableWidth, pageHeight);
-  cursorY = writeListSection(documentPdf, "Fortalezas", profile.strengths, cursorY, marginX, usableWidth, pageHeight);
-  cursorY = writeSection(documentPdf, "Riesgo principal", profile.primaryRisk, cursorY, marginX, usableWidth, pageHeight);
+
+  documentPdf.setFont("helvetica", "bold");
+  documentPdf.setFontSize(18);
+  documentPdf.text("Tu perfil de usuario de IA es:", marginX, cursorY);
+
+  cursorY += 26;
+
+  documentPdf.setFont("helvetica", "bold");
+  documentPdf.setFontSize(24);
+  documentPdf.text(profile.label, marginX, cursorY);
+
+  cursorY += 26;
+
+  cursorY += 14;
+  cursorY = writeSection(documentPdf, "Qué caracteriza a este perfil", profile.description, cursorY, marginX, usableWidth, pageHeight);
+  cursorY = writeListSection(documentPdf, "Lo que mejor haces", profile.strengths, cursorY, marginX, usableWidth, pageHeight);
+  cursorY = writeSection(documentPdf, "Lo que podría frenarte", profile.primaryRisk, cursorY, marginX, usableWidth, pageHeight);
   cursorY = writeSection(
     documentPdf,
-    "Frase característica",
+    "Si este perfil te representa, probablemente alguna vez pensaste",
     profile.characteristicStatement,
     cursorY,
     marginX,
@@ -289,7 +301,7 @@ function downloadPdf(record, profile, appConfig) {
   );
   cursorY = writeSection(
     documentPdf,
-    "Oportunidades poco aprovechadas",
+    "Lo que posiblemente todavía no estés aprovechando",
     profile.underutilizedOpportunities,
     cursorY,
     marginX,
@@ -298,7 +310,7 @@ function downloadPdf(record, profile, appConfig) {
   );
   cursorY = writeSection(
     documentPdf,
-    "Siguiente paso recomendado",
+    "Qué te conviene aprender ahora",
     profile.nextLearningStep,
     cursorY,
     marginX,
@@ -307,7 +319,7 @@ function downloadPdf(record, profile, appConfig) {
   );
 
   const pageCount = documentPdf.getNumberOfPages();
-  const footerText = `Informe generado para: ${record.name} | ${record.email} | (${record.country || "Sin país"})`;
+  const footerText = `Informe generado para ${record.name} • ${record.email}`;
 
   for (let pageNumber = 1; pageNumber <= pageCount; pageNumber += 1) {
     documentPdf.setPage(pageNumber);
@@ -316,11 +328,15 @@ function downloadPdf(record, profile, appConfig) {
     documentPdf.text(footerText, marginX, pageHeight - 24);
   }
 
-  const filename = `${appConfig.pdf.fileNamePrefix}-${sanitizeFileSegment(record.name)}.pdf`;
+  const filename = `Resultado-${sanitizeFileSegment(record.name)}.pdf`;
   documentPdf.save(filename);
 }
 
 function writeSection(pdf, title, body, cursorY, marginX, usableWidth, pageHeight) {
+  if (title === "Si este perfil te representa, probablemente alguna vez pensaste") {
+      body = `“${body}”`;
+  }
+
   cursorY = ensurePageBreak(pdf, cursorY, pageHeight, 80);
   pdf.setTextColor(29, 42, 47);
   pdf.setFont("helvetica", "bold");
