@@ -138,7 +138,7 @@ function renderResult(record, profile, cta, appConfig) {
     </section>
 
     <section class="result-section">
-      <h2>Lo que probablemente todavía no estés aprovechando</h2>
+      <h2>Lo que posiblemente todavía no estés aprovechando</h2>
       <p class="section-copy">
         ${escapeHtml(profile.underutilizedOpportunities)}
       </p>
