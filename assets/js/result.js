@@ -9,6 +9,21 @@ import {
 
 const resultRoot = document.querySelector("#resultApp");
 
+const PROFILE_ICONS = {
+  explorador: "compass",
+  desconfiado: "search",
+  jefe: "target",
+  minimalista: "zap",
+  prudente: "shield",
+};
+
+const SECTION_ICONS = {
+  strengths: "check",
+  risk: "triangle-alert",
+  opportunities: "lightbulb",
+  learning: "move-up-right",
+};
+
 const dataUrls = {
   app: "data/app.json",
   profiles: "data/profiles.json",
@@ -31,7 +46,9 @@ async function initialize() {
   const token = readTokenFromUrl();
 
   if (!token) {
-    renderErrorState("Falta el token del resultado. Revisa el enlace recibido.");
+    renderErrorState(
+      "Falta el token del resultado. Revisa el enlace recibido.",
+    );
     return;
   }
 
@@ -63,19 +80,18 @@ function renderResult(record, profile, cta, appConfig) {
   resultRoot.setAttribute("aria-busy", "false");
 
   const strengthsMarkup = profile.strengths
-  .map(
-    (item) => `
+    .map(
+      (item) => `
       <li>
-        <span class="strength-check">✓</span>
         <span>${escapeHtml(item)}</span>
       </li>
-    `
-  )
-  .join("");
+    `,
+    )
+    .join("");
 
   resultRoot.innerHTML = `
     <header class="result-page-header">
-      <header class="result-page-header">
+      
         <div class="result-meta">
           <p class="result-meta-title">
             Resultado personalizado para:
@@ -86,21 +102,22 @@ function renderResult(record, profile, cta, appConfig) {
           </p>
 
           <p class="result-meta-email">
-            ${escapeHtml(record.email)}
-          </p>
-
-          <p class="result-meta-date">
-            ${formatShortDate(record.timestamp)}
+            ${escapeHtml(record.email)} · ${formatShortDate(record.timestamp)}
           </p>
         </div>
-      </header>
+
+        <hr>
     </header>
 
-    <section class="result-section">
+    <section class="result-section result-feature--success">
       <div class="profile-card">
+        <div class="profile-card-icon">
+          <i data-lucide="${PROFILE_ICONS[record.result]}"></i>
+        </div>
         <p class="result-profile-kicker">
           Tu perfil de usuario de IA es:
         </p>
+
         <h1 class="result-profile-name">
           ${escapeHtml(profile.label)}
         </h1>
@@ -109,8 +126,6 @@ function renderResult(record, profile, cta, appConfig) {
         </p>
       </div>
     </section>
-
-    <hr class="result-divider">
 
     <section class="result-section">
       <p class="result-intro">
@@ -121,46 +136,58 @@ function renderResult(record, profile, cta, appConfig) {
       </blockquote>
     </section>
 
-    <hr class="result-divider">
-
-    <section class="result-section">
-      <h2>Lo que mejor haces</h2>
+    <section class="result-section result-feature result-feature--success">
+      <div class="result-block-title success">
+        <i data-lucide="${SECTION_ICONS.strengths}"></i>
+        <h2>Lo que mejor haces</h2>
+      </div>
       <ul class="bullet-list">
         ${strengthsMarkup}
       </ul>
     </section>
 
-    <section class="result-section">
-      <h2>Lo que podría frenarte</h2>
+    <section class="result-section result-feature result-feature--warning">
+      <div class="result-block-title warning">
+        <i data-lucide="${SECTION_ICONS.risk}"></i>
+        <h2>Lo que podría frenarte</h2>
+      </div>
       <p class="section-copy">
         ${escapeHtml(profile.primaryRisk)}
       </p>
     </section>
 
-    <section class="result-section">
-      <h2>Lo que posiblemente todavía no estés aprovechando</h2>
+    <section class="result-section result-feature result-feature--info">
+      <div class="result-block-title info">
+        <i data-lucide="${SECTION_ICONS.opportunities}"></i>
+          <h2>Lo que posiblemente todavía no estés aprovechando</h2>
+      </div>
       <p class="section-copy">
         ${escapeHtml(profile.underutilizedOpportunities)}
       </p>
     </section>
 
-    <section class="result-section">
-      <h2>Qué te conviene aprender ahora</h2>
+    <section class="result-section result-feature result-feature--learn">
+      <div class="result-block-title learn">
+        <i data-lucide="${SECTION_ICONS.learning}"></i>
+        <h2>Qué te conviene aprender ahora</h2>
+      </div>
       <p class="section-copy">
         ${escapeHtml(profile.nextLearningStep)}
       </p>
     </section>
 
-    <section class="result-section result-section--download">
-      <button
-        type="button"
-        class="button"
-        id="downloadPdf">
-        Descargar informe en PDF
-      </button>
+    <section class="result-section download-card">
+        <p class="download-card__title">
+          Llevate tu resultado completo
+        </p>
+        <button
+          type="button"
+          class="button download-button"
+          id="downloadPdf">
+          <i data-lucide="download"></i>
+          <span>Descargar informe en PDF</span>
+        </button>
     </section>
-
-    <hr class="result-divider">
 
     <section class="result-section result-section--cta">
       <p class="screen-kicker">
@@ -219,27 +246,25 @@ function renderResult(record, profile, cta, appConfig) {
           ${escapeHtml(cta.webSite.label)}
         </a>
       </div>
-    </section>
 
-    <hr class="result-divider">
-
-    <section class="result-section">
-      <a class="ghost-link" href="index.html">
-          ← Hacer nuevamente el test
+      <a class="result-restart-link" href="index.html">
+        ← Hacer nuevamente el test
       </a>
     </section>
   `;
 
-  document
-    .querySelector("#downloadPdf")
-    ?.addEventListener("click", () => {
-      downloadPdf(record, profile, appConfig);
-    });
+  document.querySelector("#downloadPdf")?.addEventListener("click", () => {
+    downloadPdf(record, profile, appConfig);
+  });
+
+  lucide.createIcons();
 }
 
 function downloadPdf(record, profile, appConfig) {
   if (!window.jspdf?.jsPDF) {
-    renderErrorState("La librería de PDF todavía no está disponible. Intenta nuevamente en unos segundos.");
+    renderErrorState(
+      "La librería de PDF todavía no está disponible. Intenta nuevamente en unos segundos.",
+    );
     return;
   }
 
@@ -287,9 +312,33 @@ function downloadPdf(record, profile, appConfig) {
   cursorY += 26;
 
   cursorY += 14;
-  cursorY = writeSection(documentPdf, "Qué caracteriza a este perfil", profile.description, cursorY, marginX, usableWidth, pageHeight);
-  cursorY = writeListSection(documentPdf, "Lo que mejor haces", profile.strengths, cursorY, marginX, usableWidth, pageHeight);
-  cursorY = writeSection(documentPdf, "Lo que podría frenarte", profile.primaryRisk, cursorY, marginX, usableWidth, pageHeight);
+  cursorY = writeSection(
+    documentPdf,
+    "Qué caracteriza a este perfil",
+    profile.description,
+    cursorY,
+    marginX,
+    usableWidth,
+    pageHeight,
+  );
+  cursorY = writeListSection(
+    documentPdf,
+    "Lo que mejor haces",
+    profile.strengths,
+    cursorY,
+    marginX,
+    usableWidth,
+    pageHeight,
+  );
+  cursorY = writeSection(
+    documentPdf,
+    "Lo que podría frenarte",
+    profile.primaryRisk,
+    cursorY,
+    marginX,
+    usableWidth,
+    pageHeight,
+  );
   cursorY = writeSection(
     documentPdf,
     "Si este perfil te representa, probablemente alguna vez pensaste",
@@ -332,9 +381,19 @@ function downloadPdf(record, profile, appConfig) {
   documentPdf.save(filename);
 }
 
-function writeSection(pdf, title, body, cursorY, marginX, usableWidth, pageHeight) {
-  if (title === "Si este perfil te representa, probablemente alguna vez pensaste") {
-      body = `“${body}”`;
+function writeSection(
+  pdf,
+  title,
+  body,
+  cursorY,
+  marginX,
+  usableWidth,
+  pageHeight,
+) {
+  if (
+    title === "Si este perfil te representa, probablemente alguna vez pensaste"
+  ) {
+    body = `“${body}”`;
   }
 
   cursorY = ensurePageBreak(pdf, cursorY, pageHeight, 80);
@@ -352,7 +411,15 @@ function writeSection(pdf, title, body, cursorY, marginX, usableWidth, pageHeigh
   return cursorY;
 }
 
-function writeListSection(pdf, title, items, cursorY, marginX, usableWidth, pageHeight) {
+function writeListSection(
+  pdf,
+  title,
+  items,
+  cursorY,
+  marginX,
+  usableWidth,
+  pageHeight,
+) {
   cursorY = ensurePageBreak(pdf, cursorY, pageHeight, 90);
   pdf.setFont("helvetica", "bold");
   pdf.setFontSize(14);
