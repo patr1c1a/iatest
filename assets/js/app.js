@@ -521,9 +521,25 @@ function renderIntroScreen() {
         ¿Cómo te relacionas con la IA?
       </h1>
 
-      <p class="intro-description">
-        Una evaluación breve para identificar tu perfil como usuario de inteligencia artificial y recibir tu resultado personalizado.
-      </p>
+      <div class="intro-description">
+
+        <div class="intro-description__text">
+          <p>
+            Una evaluación breve para identificar tu perfil como usuario de inteligencia
+            artificial y recibir tu resultado personalizado.
+          </p>
+        </div>
+
+        <div class="intro-description__image">
+          <img
+            src="assets/images/laptop-brain.png"
+            alt=""
+            class="intro-illustration"
+            aria-hidden="true"
+          />
+        </div>
+
+      </div>
 
       <div class="intro-divider"></div>
 

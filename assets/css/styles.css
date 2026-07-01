@@ -145,10 +145,31 @@ h3 {
 }
 
 .intro-description {
-  max-width: 42rem;
-  font-size: clamp(0.95rem, 2vw, 1.1rem);
-  line-height: 1.8;
-  color: var(--text-secondary);
+  display: grid;
+  grid-template-columns: 1fr 220px;
+  align-items: center;
+  gap: 3rem;
+  max-width: 760px;
+  margin: 2.5rem auto 0;
+}
+
+.intro-description__text {
+  text-align: left;
+}
+
+.intro-description__text p {
+  margin: 0;
+}
+
+.intro-description__image {
+  display: flex;
+  justify-content: center;
+}
+
+.intro-illustration {
+  width: 180px;
+  height: auto;
+  display: block;
 }
 
 .intro-divider {
@@ -1040,6 +1061,27 @@ h3 {
   height: 20px;
   stroke: currentColor;
   stroke-width: 2;
+}
+
+@media (max-width: 720px) {
+  .intro-description {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .intro-description__image {
+    grid-row: 1;
+    justify-content: center;
+  }
+
+  .intro-description__text {
+    grid-row: 2;
+    text-align: center;
+  }
+
+  .intro-illustration {
+    width: 140px;
+  }
 }
 
 @media (min-width: 720px) {
