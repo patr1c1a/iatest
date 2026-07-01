@@ -14,7 +14,7 @@ const PROFILE_ICONS = {
   desconfiado: "search",
   jefe: "target",
   minimalista: "zap",
-  prudente: "shield",
+  prudente: "shield-user",
 };
 
 const SECTION_ICONS = {
