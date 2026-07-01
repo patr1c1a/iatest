@@ -1,10 +1,5 @@
 import { submitAssessment } from "./api.js";
-import {
-  escapeHtml,
-  inferCountry,
-  loadJson,
-  shuffle,
-} from "./utils.js";
+import { escapeHtml, inferCountry, loadJson, shuffle } from "./utils.js";
 
 const appRoot = document.querySelector("#app");
 const progressFill = document.querySelector("#progressFill");
@@ -34,18 +29,19 @@ async function initialize() {
   renderLoadingState("Preparando tu experiencia...");
 
   try {
-    const [appConfig, questionsData, profilesData, tieBreakersData] = await Promise.all([
-      loadJson(dataUrls.app),
-      loadJson(dataUrls.questions),
-      loadJson(dataUrls.profiles),
-      loadJson(dataUrls.tieBreakers),
-    ]);
+    const [appConfig, questionsData, profilesData, tieBreakersData] =
+      await Promise.all([
+        loadJson(dataUrls.app),
+        loadJson(dataUrls.questions),
+        loadJson(dataUrls.profiles),
+        loadJson(dataUrls.tieBreakers),
+      ]);
 
     runtime.appConfig = appConfig;
     runtime.questions = questionsData.questions;
     runtime.profiles = profilesData.profiles;
     runtime.tieBreakers = tieBreakersData.tieBreakers;
-    
+
     const params = new URLSearchParams(window.location.search);
     if (params.get("restart") === "1") {
       window.localStorage.removeItem(runtime.appConfig.storage.progressKey);
@@ -95,7 +91,9 @@ function restoreOrCreateState() {
         return (
           Array.isArray(storedOptionOrder) &&
           storedOptionOrder.length === currentProfiles?.length &&
-          currentProfiles.every((profileKey) => storedOptionOrder.includes(profileKey))
+          currentProfiles.every((profileKey) =>
+            storedOptionOrder.includes(profileKey),
+          )
         );
       });
 
@@ -153,9 +151,7 @@ function resetState() {
 
 function bindGlobalEvents() {
   appRoot.addEventListener("click", handleClick);
-  document
-  .querySelector(".site-header")
-  .addEventListener("click", handleClick);
+  document.querySelector(".site-header").addEventListener("click", handleClick);
   appRoot.addEventListener("click", handleOptionClick);
   appRoot.addEventListener("change", handleChange);
   appRoot.addEventListener("input", handleInput);
@@ -202,7 +198,10 @@ function handleOptionClick(event) {
   }
 
   if (radioInput.name.startsWith("question-")) {
-    if (runtime.state.answers[radioInput.name.replace("question-", "")] === radioInput.value) {
+    if (
+      runtime.state.answers[radioInput.name.replace("question-", "")] ===
+      radioInput.value
+    ) {
       window.setTimeout(goToNextStep, 100);
     }
   }
@@ -276,11 +275,11 @@ async function handleSubmit(event) {
 
   const answers = {
     ...runtime.state.answers,
-  };  
+  };
 
   if (runtime.state.tieBreakerChoice) {
     answers[TIE_BREAKER_QUESTION] = runtime.state.tieBreakerChoice;
-  }   
+  }
   const formData = new FormData(form);
 
   const payload = {
@@ -350,7 +349,8 @@ function validateLeadPayload(payload) {
 
 function goToNextStep() {
   if (runtime.state.stage === "question") {
-    const currentQuestion = runtime.questions[runtime.state.currentQuestionIndex];
+    const currentQuestion =
+      runtime.questions[runtime.state.currentQuestionIndex];
 
     if (!runtime.state.answers[currentQuestion.id]) {
       renderCurrentStage("Selecciona una opción antes de avanzar.", "error");
@@ -435,9 +435,10 @@ function resolveFinalStage() {
     return;
   }
 
-  runtime.state.tiedProfiles = [...topProfiles].sort((left, right) =>
-    runtime.appConfig.resultRules.fallbackPriority.indexOf(left) -
-    runtime.appConfig.resultRules.fallbackPriority.indexOf(right),
+  runtime.state.tiedProfiles = [...topProfiles].sort(
+    (left, right) =>
+      runtime.appConfig.resultRules.fallbackPriority.indexOf(left) -
+      runtime.appConfig.resultRules.fallbackPriority.indexOf(right),
   );
   runtime.state.stage = "tie";
   runtime.state.tieBreakerChoice = "";
@@ -475,16 +476,14 @@ function navigateToStage() {
 
   window.scrollTo({
     top: 0,
-    behavior: "smooth"
+    behavior: "smooth",
   });
 }
 
 function updateProgress() {
-
   const isIntro = runtime.state.stage === "intro";
 
-  document.querySelector(".site-header").style.display =
-    isIntro ? "none" : "";
+  document.querySelector(".site-header").style.display = isIntro ? "none" : "";
 
   if (isIntro) {
     return;
@@ -500,11 +499,9 @@ function updateProgress() {
     current = runtime.questions.length;
   }
 
-  questionCounter.textContent =
-    `${Math.min(current, runtime.questions.length)}/${runtime.questions.length}`;
+  questionCounter.textContent = `${Math.min(current, runtime.questions.length)}/${runtime.questions.length}`;
 
-  progressFill.style.width =
-    `${(current / runtime.questions.length) * 100}%`;
+  progressFill.style.width = `${(current / runtime.questions.length) * 100}%`;
 }
 
 function renderIntroScreen() {
@@ -580,10 +577,14 @@ function renderQuestionScreen(feedbackMessage = "", feedbackType = "") {
   const selectedProfile = runtime.state.answers[question.id] || "";
   const orderedProfiles = runtime.state.optionOrder[question.id];
   const orderedOptions = orderedProfiles
-    ?.map((profileKey) => question.options.find((option) => option.profile === profileKey))
+    ?.map((profileKey) =>
+      question.options.find((option) => option.profile === profileKey),
+    )
     .filter(Boolean);
   const optionsToRender =
-    orderedOptions?.length === question.options.length ? orderedOptions : question.options;
+    orderedOptions?.length === question.options.length
+      ? orderedOptions
+      : question.options;
   const optionsMarkup = optionsToRender
     .map((option, index) => {
       const isSelected = option.profile === selectedProfile;
@@ -625,7 +626,9 @@ function renderTieBreakerScreen(feedbackMessage = "", feedbackType = "") {
   const tieData = runtime.tieBreakers.question;
 
   if (!tieData || !runtime.state.tiedProfiles.length) {
-    renderFatalError("No se encontró la configuración de la pregunta de desempate.");
+    renderFatalError(
+      "No se encontró la configuración de la pregunta de desempate.",
+    );
     return;
   }
 
@@ -745,7 +748,10 @@ function renderFeedback(message, type) {
     return "";
   }
 
-  const className = type === "success" || type === "pending" ? "feedback-success" : "feedback-error";
+  const className =
+    type === "success" || type === "pending"
+      ? "feedback-success"
+      : "feedback-error";
 
   return `<div class="feedback ${className}" role="status">${escapeHtml(message)}</div>`;
 }
