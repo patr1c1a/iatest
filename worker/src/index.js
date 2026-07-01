@@ -155,12 +155,16 @@ async function handleResultLookup(token, env) {
 
   await ensureSheetHeaders(env);
 
-  const records = await readSheetRecords(env);
-  const matchedRecord = records.find((record) => record.token === token);
+  const rowNumber = await findRowByToken(env, token);
 
-  if (!matchedRecord) {
-    return jsonResponse({ error: "No se encontró un resultado asociado a ese enlace." }, 404);
+  if (!rowNumber) {
+    return jsonResponse(
+      { error: "No se encontró un resultado asociado a ese enlace." },
+      404,
+    );
   }
+
+  const matchedRecord = await readSheetRecord(env, rowNumber);
 
   return jsonResponse({ record: matchedRecord });
 }
@@ -373,7 +377,52 @@ async function readSheetRecords(env) {
     return [];
   }
 
-  return rows.slice(1).map((row) => ({
+  return rows.slice(1).map(mapSheetRow);
+}
+
+async function findRowByToken(env, token) {
+  const range = buildSheetRange(env.GOOGLE_SHEET_NAME, "B:B");
+
+  const response = await sheetsRequest(
+    env,
+    `/values/${range}`,
+    { method: "GET" },
+  );
+
+  const rows = response.values || [];
+
+  for (let index = 1; index < rows.length; index += 1) {
+    if ((rows[index]?.[0] || "") === token) {
+      return index + 1;
+    }
+  }
+
+  return null;
+}
+
+async function readSheetRecord(env, rowNumber) {
+  const range = buildSheetRange(
+    env.GOOGLE_SHEET_NAME,
+    `A${rowNumber}:S${rowNumber}`,
+  );
+
+  const response = await sheetsRequest(
+    env,
+    `/values/${range}`,
+    { method: "GET" },
+  );
+
+  const row = response.values?.[0];
+
+  if (!row) {
+    return null;
+  }
+
+  return mapSheetRow(row);
+}
+
+function mapSheetRow(row) {
+  return {
     timestamp: row[0] || "",
     token: row[1] || "",
     testVersion: Number(row[2]) || 1,
@@ -395,7 +444,7 @@ async function readSheetRecords(env) {
       q10: row[17] || "",
       q11: row[18] || "",
     },
-  }));
+  };
 }
 
 function buildSheetRange(sheetName, cells) {
