@@ -146,6 +146,13 @@ async function handleResultLookup(token, env) {
     return jsonResponse({ error: "Se debe indicar un token válido." }, 400);
   }
 
+  if (!/^[a-f0-9]{32}$/i.test(token)) {
+    return jsonResponse(
+      { error: "Token inválido." },
+      400,
+    );
+  }
+
   await ensureSheetHeaders(env);
 
   const records = await readSheetRecords(env);
