@@ -1,7 +1,7 @@
 {
   "site": {
-    "name": "Perfil de Uso de IA",
-    "baseUrl": "https://patriciaemiguel.com"
+    "name": "Test de Perfil de Usuario de IA",
+    "baseUrl": "https://iatest.patriciaemiguel.com"
   },
   "api": {
     "baseUrl": "https://perfil-ia-worker.patriciaemiguel.workers.dev",
