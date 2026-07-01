@@ -282,7 +282,7 @@ function downloadPdf(record, profile, appConfig) {
 
   documentPdf.setFont("helvetica", "bold");
   documentPdf.setFontSize(22);
-  documentPdf.text("Resultado del test", marginX, cursorY);
+  documentPdf.text("Test de perfil de usuario de IA · Resultado", marginX, cursorY);
   cursorY += 28;
 
   documentPdf.setFont("helvetica", "normal");
@@ -321,6 +321,15 @@ function downloadPdf(record, profile, appConfig) {
     usableWidth,
     pageHeight,
   );
+  cursorY = writeSection(
+    documentPdf,
+    "Si este perfil te representa, probablemente alguna vez pensaste",
+    profile.characteristicStatement,
+    cursorY,
+    marginX,
+    usableWidth,
+    pageHeight,
+  );
   cursorY = writeListSection(
     documentPdf,
     "Lo que mejor haces",
@@ -334,15 +343,6 @@ function downloadPdf(record, profile, appConfig) {
     documentPdf,
     "Lo que podría frenarte",
     profile.primaryRisk,
-    cursorY,
-    marginX,
-    usableWidth,
-    pageHeight,
-  );
-  cursorY = writeSection(
-    documentPdf,
-    "Si este perfil te representa, probablemente alguna vez pensaste",
-    profile.characteristicStatement,
     cursorY,
     marginX,
     usableWidth,
