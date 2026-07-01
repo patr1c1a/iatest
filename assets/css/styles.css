@@ -275,7 +275,7 @@ h3 {
 
 .field-help {
   color: var(--text-soft);
-  font-size: 1rem;
+  font-size: 0.85rem;
   line-height: 1.75;
   margin: 0;
   font-weight: 300;
@@ -512,7 +512,7 @@ h3 {
 
 .field-label {
   font-weight: 700;
-  font-size: 1.2rem;
+  font-size: 1rem;
 }
 
 .field-input {
