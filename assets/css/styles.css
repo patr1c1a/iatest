@@ -78,7 +78,7 @@ a {
   position: relative;
   max-width: var(--max-width);
   margin: 0 auto;
-  padding: 24px 16px 56px;
+  padding: 0px 16px 56px;
 }
 
 .page-shell--result {
@@ -244,7 +244,7 @@ h3 {
 
 .app-card {
   min-height: 520px;
-  padding: 28px;
+  padding: 40px 28px 28px;
 }
 
 .screen {
@@ -256,6 +256,7 @@ h3 {
 .screen-header {
   display: grid;
   gap: 20px;
+  scroll-margin-top: 90px;
 }
 
 .screen-header h2 {
@@ -377,7 +378,18 @@ h3 {
   position: sticky;
   top: 0;
   z-index: 100;
-  padding-bottom: 1.4rem;
+  margin-left: calc(50% - 50vw);
+  margin-right: calc(50% - 50vw);
+  padding: 1rem max(16px, calc(50vw - var(--max-width) / 2 + 16px)) 1rem;
+  margin-bottom: 1.5rem;
+  background: linear-gradient(
+    180deg,
+    rgba(26, 22, 36, 0.96) 0%,
+    rgba(21, 18, 29, 0.9) 100%
+  );
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.22);
 }
 
 .test-header {
@@ -385,7 +397,7 @@ h3 {
   grid-template-columns: 56px 1fr 56px;
   align-items: center;
   gap: 1rem;
-  margin-bottom: 1rem;
+  margin-bottom: 0.65rem;
 }
 
 .header-back {
@@ -1087,11 +1099,51 @@ h3 {
   .intro-illustration {
     width: 140px;
   }
+
+  .site-header {
+    padding-top: 0.55rem;
+    padding-bottom: 0.55rem;
+  }
+
+  .test-header {
+    grid-template-columns: 40px 1fr 48px;
+    gap: 0.5rem;
+    margin-bottom: 0.45rem;
+  }
+
+  .header-back svg {
+    width: 22px;
+    height: 22px;
+  }
+
+  .header-title {
+    font-size: 0.9rem;
+  }
+
+  .header-counter {
+    font-size: 0.95rem;
+  }
+
+  .progress-bar {
+    height: 6px;
+  }
+
+  .screen-header h2 {
+    padding: 0;
+  }
+
+  .app-card {
+    padding-top: 22px;
+  }
+
+  .screen-header {
+    scroll-margin-top: 72px;
+  }
 }
 
 @media (min-width: 720px) {
   .page-shell {
-    padding: 16px 24px 72px;
+    padding: 0px 24px 72px;
   }
 
   .site-header {
