@@ -38,6 +38,8 @@ async function initialize() {
       ]);
 
     runtime.appConfig = appConfig;
+    const serverConfig = await loadServerConfig();
+    runtime.turnstileSiteKey = serverConfig.turnstileSiteKey;
     runtime.questions = questionsData.questions;
     runtime.profiles = profilesData.profiles;
     runtime.tieBreakers = tieBreakersData.tieBreakers;
@@ -66,6 +68,18 @@ async function initialize() {
       "No fue posible cargar el test en este momento. Recarga la página para volver a intentarlo.",
     );
   }
+}
+
+async function loadServerConfig() {
+  const response = await fetch(
+    `${runtime.appConfig.api.baseUrl}/api/config`
+  );
+
+  if (!response.ok) {
+    throw new Error("No fue posible cargar la configuración.");
+  }
+
+  return response.json();
 }
 
 function restoreOrCreateState() {
@@ -282,12 +296,15 @@ async function handleSubmit(event) {
   }
   const formData = new FormData(form);
 
+  const turnstileToken = formData.get("cf-turnstile-response");
+
   const payload = {
     name: String(formData.get("name") || "").trim(),
     email: String(formData.get("email") || "").trim(),
     city: String(formData.get("city") || "").trim(),
     answers,
     testVersion: runtime.appConfig.storage.version,
+    turnstileToken,
   };
 
   runtime.state.lead = {
@@ -336,6 +353,10 @@ function validateLeadPayload(payload) {
 
   if (!emailPattern.test(payload.email)) {
     return "Ingresa un email válido.";
+  }
+
+  if (!payload.turnstileToken) {
+    return "Completa la verificación antes de continuar.";
   }
 
   for (let i = 1; i <= runtime.questions.length; i++) {
@@ -730,7 +751,9 @@ function renderLeadScreen(feedbackMessage = "", feedbackType = "") {
               value="${escapeHtml(runtime.state.lead.city)}"
             />
           </div>
-          <div></div>
+          <div class="turnstile-container">
+            <div class="cf-turnstile"></div>
+          </div>
         </div>
 
         <div class="button-row">
@@ -741,6 +764,15 @@ function renderLeadScreen(feedbackMessage = "", feedbackType = "") {
       </form>
     </section>
   `;
+
+  if (window.turnstile) {
+    window.turnstile.render(
+      document.querySelector(".cf-turnstile"),
+      {
+        sitekey: runtime.turnstileSiteKey,
+      },
+    );
+  }
 }
 
 function renderFeedback(message, type) {

@@ -445,6 +445,11 @@ h3 {
   flex: none;
 }
 
+.turnstile-container {
+  display: flex;
+  justify-content: center;
+}
+
 .button-row {
   display: flex;
   flex-wrap: wrap;

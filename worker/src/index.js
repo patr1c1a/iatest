@@ -39,6 +39,15 @@ export default {
     }
 
     try {
+      if (request.method === "GET" && requestUrl.pathname === "/api/config") {
+        return withCors(
+          jsonResponse({
+            turnstileSiteKey: env.TURNSTILE_SITE_KEY,
+          }),
+          request,
+          env,
+        );
+      }
       if (request.method === "POST" && requestUrl.pathname === "/api/submissions") {
         return withCors(await handleSubmission(request, env), request, env);
       }
@@ -79,6 +88,21 @@ async function handleSubmission(request, env) {
 
   if (validationError) {
     return jsonResponse({ error: validationError }, 400);
+  }
+
+  const turnstileValid = await verifyTurnstile(
+    payload.turnstileToken,
+    request,
+    env,
+  );
+
+  if (!turnstileValid) {
+    return jsonResponse(
+      {
+        error: "No fue posible verificar la solicitud.",
+      },
+      400,
+    );
   }
 
   await ensureSheetHeaders(env);
@@ -189,6 +213,10 @@ function validatePayload(payload) {
     return "El email no tiene un formato válido.";
   }
 
+  if (!payload.turnstileToken) {
+    return "Falta la verificación de seguridad.";
+  }
+
   if (!payload.answers || typeof payload.answers !== "object") {
     return "Las respuestas del test son obligatorias.";
   }
@@ -287,6 +315,32 @@ function jsonResponse(payload, status = 200) {
       "Cache-Control": "private, no-store",
     },
   });
+}
+
+async function verifyTurnstile(token, request, env) {
+  const response = await fetch(
+    "https://challenges.cloudflare.com/turnstile/v0/siteverify",
+    {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/x-www-form-urlencoded",
+      },
+      body: new URLSearchParams({
+        secret: env.TURNSTILE_SECRET_KEY,
+        response: token,
+        remoteip:
+          request.headers.get("CF-Connecting-IP") || "",
+      }),
+    },
+  );
+
+  if (!response.ok) {
+    return false;
+  }
+
+  const result = await response.json();
+
+  return result.success === true;
 }
 
 async function ensureSheetHeaders(env) {
