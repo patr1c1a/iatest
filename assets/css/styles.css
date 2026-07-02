@@ -245,12 +245,14 @@ h3 {
 .app-card {
   min-height: 520px;
   padding: 40px 28px 28px;
+  min-width: 0;
 }
 
 .screen {
   display: grid;
   gap: 24px;
   animation: rise 360ms ease;
+  min-width: 0;
 }
 
 .screen-header {
@@ -264,6 +266,9 @@ h3 {
   line-height: 1.18;
   max-width: 900px;
   padding: 10px 24px;
+  overflow-wrap: break-word;
+  word-break: normal;
+  max-width: 100%;
 }
 
 .screen-kicker {
@@ -460,6 +465,12 @@ h3 {
 .turnstile-container {
   display: flex;
   justify-content: center;
+  width: 100%;
+  overflow: hidden;
+}
+
+.turnstile-container iframe {
+  max-width: 100%;
 }
 
 .button-row {
@@ -555,6 +566,7 @@ h3 {
 
 .field-input {
   width: 100%;
+  max-width: 100%;
   min-height: 52px;
   padding: 14px 16px;
   border: 1px solid var(--border);
