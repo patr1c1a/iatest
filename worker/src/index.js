@@ -31,7 +31,7 @@ const EMAIL_RATE_LIMIT = {
 };
 
 export default {
-  async fetch(request, env) {
+  async fetch(request, env, ctx) {
     const requestUrl = new URL(request.url);
 
     if (request.method === "OPTIONS") {
@@ -49,7 +49,11 @@ export default {
         );
       }
       if (request.method === "POST" && requestUrl.pathname === "/api/submissions") {
-        return withCors(await handleSubmission(request, env), request, env);
+        return withCors(
+          await handleSubmission(request, env, ctx),
+          request,
+          env,
+        );
       }
 
       if (request.method === "GET" && requestUrl.pathname.startsWith("/api/results/")) {
@@ -82,7 +86,7 @@ export default {
   },
 };
 
-async function handleSubmission(request, env) {
+async function handleSubmission(request, env, ctx) {
   const payload = await request.json();
   const validationError = validatePayload(payload);
 
@@ -145,21 +149,17 @@ async function handleSubmission(request, env) {
   await appendSheetRow(env, record);
 
   const resultUrl = buildResultUrl(env.SITE_DOMAIN, token);
-  let emailWarning = "";
 
-  try {
-    await sendResultEmail(env, record, resultUrl);
-  } catch (error) {
-    console.error("email_error", error);
-    emailWarning =
-      "No fue posible enviar el email automáticamente, pero tu resultado quedó guardado.";
-  }
+  ctx.waitUntil(
+    sendResultEmail(env, record, resultUrl).catch((error) => {
+      console.error("email_error", error);
+    }),
+  );
 
   return jsonResponse(
     {
       token,
       resultUrl,
-      emailWarning,
     },
     201,
   );
