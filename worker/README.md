@@ -54,7 +54,7 @@ wrangler login
 
 Si wrangler pide un subdominio para workers.dev, crear uno.
 
-**Turnstile**: dentro de Cloudflare se debe crear un widget de Turnstile. Es recomendable crear uno para producción y uno para desarrollo. En el widget de producción, como host habilitado se colocará la url de producción. En el widget de desarrollo se agregarán "localhost" y "127.0.0.1". Luego se configurarán los valores de "site key" y "secret key" que correspondan a cada widget: cuando se necesita probar en desarrollo se colocarán los del widget de desarrollo y cuando esté listo, se colocarán los de producción.
+**Turnstile**: Dentro de Cloudflare se debe crear un widget de Turnstile. Es recomendable crear uno para producción y uno para desarrollo. En el widget de producción, como host habilitado se colocará la url de producción. En el widget de desarrollo se agregarán "localhost" y "127.0.0.1". Luego se configurarán los valores de "site key" y "secret key" que correspondan a cada widget: cuando se necesita probar en desarrollo se colocarán los del widget de desarrollo y cuando esté listo, se colocarán los de producción.
 
 Para cargar los valores de las variables secretas que necesita el Worker (que están en `.dev.vars`):
 
@@ -62,6 +62,8 @@ Para cargar los valores de las variables secretas que necesita el Worker (que es
 cd worker
 wrangler dev
 ```
+
+**Resend**: (1) Debe existir una cuenta de resend.com. En los dominios se debe agregar el que se usará con el sitio web y, administrando la zona DNS de ese dominio, agregar los registros que proporciona resend, y esperar a que resend los valide. (2) Generar una API key en resend, con "sending access" (no full).
 
 ## Variables del Worker
 
@@ -71,6 +73,8 @@ wrangler dev
 - GOOGLE_SHEET_NAME: el nombre de la pestaña dentro de la planilla de Google Sheet (respetando mayúsculas y minúsculas). Por defecto, Google Sheets la llama "Sheet1".
 - TURNSTILE_SITE_KEY: site key del widget de Turnstile en CloudFlare.
 - TURNSTILE_SECRET_KEY: secret key del widget de Turnstile en Cloudflare.
+- RESEND_API_KEY: api key generada en Resend.
+- SITE_DOMAIN: se configura en `wrangler.toml` (no se guarda como secreto).
 
 ## Ejemplo de despliegue
 
@@ -80,10 +84,10 @@ wrangler secret put GOOGLE_PRIVATE_KEY
 wrangler secret put GOOGLE_SERVICE_ACCOUNT_EMAIL
 wrangler secret put GOOGLE_SHEET_ID
 wrangler secret put GOOGLE_SHEET_NAME
-wrangler secret put RESEND_API_KEY
-wrangler secret put SITE_DOMAIN
 wrangler secret put TURNSTILE_SITE_KEY
 wrangler secret put TURNSTILE_SECRET_KEY
+wrangler secret put RESEND_API_KEY
+wrangler secret put SITE_DOMAIN
 wrangler deploy
 ```
 

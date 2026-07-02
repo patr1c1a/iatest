@@ -1,7 +1,7 @@
 {
-  "fromName": "Perfil de Uso de IA",
-  "fromEmail": "email@patriciaemiguel.com",
+  "fromName": "Patricia E. Miguel",
+  "fromEmail": "resultado@iatest.patriciaemiguel.com",
   "subject": "Tu resultado del test de IA",
-  "htmlBody": "<p>Hola {name},</p><p>Ya está listo el resultado del test que hiciste para descubrir tu perfil de usuario de IA.</p><p><strong>Según tus respuestas, el perfil que mejor describe tu forma de relacionarte con la inteligencia artificial es: </strong>{profile}.</p><p>Podrás encontrar tu informe completo en este enlace:</p><p><a href=\"{resultUrl}\">{resultUrl}</a></p><p>Gracias por completar el test.</p>",
-  "textBody": "Hola {name},\n\nYa está listo el resultado del test que hiciste para descubrir tu perfil de usuario de IA.\n\nSegún tus respuestas, el perfil que mejor describe tu forma de relacionarte con la inteligencia artificial es: {profile}\n\nPodrás encontrar tu informe completo acá:\n{resultUrl}\n\nGracias por completar el test."
+  "htmlBody": "<p>¡Hola {name}!</p><p>Ya está listo el resultado del test que hiciste para descubrir tu perfil de usuario de IA.</p><p>Según tus respuestas, el perfil que mejor describe tu forma de relacionarte con la inteligencia artificial es: <strong>'{profile}'</strong>.</p><p>En este enlace vas a encontrar un informe completo con todos los detalles y algunas sugerencias para que uses la IA sacándole el mayor provecho:</p><p><a href=\"{resultUrl}\">{resultUrl}</a></p><p>Si conoces a alguien interesado en aprender a usar mejor la la  inteligencia artificial, invitalo a responder las preguntas del test en <a href=\"https://iatest.patriciaemiguel.com\">https://iatest.patriciaemiguel.com</a>.</p><p>¡Saludos!</p><p>Patricia E. Miguel</p>",
+  "textBody": "¡Hola {name}!\n\nYa está listo el resultado del test que hiciste para descubrir tu perfil de usuario de IA.\n\nSegún tus respuestas, el perfil que mejor describe tu forma de relacionarte con la inteligencia artificial es: '{profile}'.\n\nEn esta dirección vas a encontrar un informe completo con todos los detalles y algunas sugerencias para que uses la IA sacándole el mayor provecho:\n{resultUrl}\n\nSi conoces a alguien interesado en aprender a usar mejor la la  inteligencia artificial, invitalo a responder las preguntas del test en https://iatest.patriciaemiguel.com.\n\n\n¡Saludos!\n\nPatricia E. Miguel"
 }
