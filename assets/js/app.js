@@ -543,8 +543,7 @@ function renderIntroScreen() {
 
         <div class="intro-description__text">
           <p>
-            Una evaluación breve para identificar tu perfil como usuario de inteligencia
-            artificial y recibir tu resultado personalizado.
+            10 preguntas para averiguar cuál tu perfil de usuario y aprender cómo aprovechar mejor la inteligencia artificial.
           </p>
         </div>
 
