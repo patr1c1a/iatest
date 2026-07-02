@@ -109,8 +109,6 @@ async function handleSubmission(request, env, ctx) {
     );
   }
 
-  await ensureSheetHeaders(env);
-
   const existingRecords = await readSheetRecords(env);
 
   if (hasExceededEmailLimit(existingRecords, payload.email)) {
@@ -176,8 +174,6 @@ async function handleResultLookup(token, env) {
       400,
     );
   }
-
-  await ensureSheetHeaders(env);
 
   const rowNumber = await findRowByToken(env, token);
 
