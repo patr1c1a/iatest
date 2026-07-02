@@ -101,7 +101,7 @@ Al finalizar el despliegue, dará la url donde se desplegó, ejemplo: https://pe
 }
 ```
 
-Ante cualquier cambio en el worker, se debe volver a hacer deploy (`cd worker` y luego `wrangler deploy`).
+Ante cualquier cambio en el worker (ya sea en `index.js` o por cambio de las variables secretas), se debe ejecutar `wrangler deploy`.
 
 ## Prueba
 
@@ -133,4 +133,4 @@ En el body:
 
 Si funciona correctamente, debería responder con el token y en la planilla debe insertarse una fila con los datos.
 
-Para ver logs, dejar corriendo el comando `wrangler tail` mientras se hace el POST.
+Para ver logs en vivo: `wrangler tail`.
