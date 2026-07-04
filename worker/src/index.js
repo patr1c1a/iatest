@@ -356,7 +356,7 @@ function hasExceededEmailLimit(records, email) {
 }
 
 async function appendSheetRow(env, record) {
-  const range = buildSheetRange(env.GOOGLE_SHEET_NAME, "A:S");
+  const range = env.GOOGLE_SHEET_NAME;
   const values = [
     record.timestamp,
     record.email,
