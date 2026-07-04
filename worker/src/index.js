@@ -6,10 +6,10 @@ const TIE_BREAKER_QUESTION = "q11";
 const PROFILE_KEYS = Object.keys(profilesCatalog.profiles);
 const SHEET_HEADERS = [
   "timestamp",
+  "email",
   "token",
   "testVersion",
   "name",
-  "email",
   "city",
   "country",
   "result",
@@ -109,7 +109,7 @@ async function handleSubmission(request, env, ctx) {
     );
   }
 
-  const existingRecords = await readSheetRecords(env);
+  const existingRecords = await readEmailHistory(env);
 
   if (hasExceededEmailLimit(existingRecords, payload.email)) {
     return jsonResponse(
@@ -359,10 +359,10 @@ async function appendSheetRow(env, record) {
   const range = buildSheetRange(env.GOOGLE_SHEET_NAME, "A:S");
   const values = [
     record.timestamp,
+    record.email,
     record.token,
     record.testVersion,
     record.name,
-    record.email,
     record.city,
     record.country,
     record.result,
@@ -389,20 +389,29 @@ async function appendSheetRow(env, record) {
   );
 }
 
-async function readSheetRecords(env) {
-  const range = buildSheetRange(env.GOOGLE_SHEET_NAME, "A:S");
-  const response = await sheetsRequest(env, `/values/${range}`, { method: "GET" });
+async function readEmailHistory(env) {
+  const range = buildSheetRange(
+    env.GOOGLE_SHEET_NAME,
+    "A:B",
+  );
+
+  const response =
+    await sheetsRequest(
+      env,
+      `/values/${range}`,
+      { method: "GET" },
+    );
+
   const rows = response.values || [];
 
-  if (rows.length <= 1) {
-    return [];
-  }
-
-  return rows.slice(1).map(mapSheetRow);
+  return rows.slice(1).map(row => ({
+    timestamp: row[0] || "",
+    email: row[1] || "",
+  }));
 }
 
 async function findRowByToken(env, token) {
-  const range = buildSheetRange(env.GOOGLE_SHEET_NAME, "B:B");
+  const range = buildSheetRange(env.GOOGLE_SHEET_NAME, "C:C");
 
   const response = await sheetsRequest(
     env,
@@ -445,10 +454,10 @@ async function readSheetRecord(env, rowNumber) {
 function mapSheetRow(row) {
   return {
     timestamp: row[0] || "",
-    token: row[1] || "",
-    testVersion: Number(row[2]) || 1,
-    name: row[3] || "",
-    email: row[4] || "",
+    email: row[1] || "",
+    token: row[2] || "",
+    testVersion: Number(row[3]) || 1,
+    name: row[4] || "",
     city: row[5] || "",
     country: row[6] || "",
     result: row[7] || "",
