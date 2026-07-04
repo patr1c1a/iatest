@@ -30,6 +30,9 @@ const EMAIL_RATE_LIMIT = {
   windowHours: 1,
 };
 
+let googleAccessToken = "";
+let googleAccessTokenExpiresAt = 0;
+
 export default {
   async fetch(request, env, ctx) {
     const requestUrl = new URL(request.url);
@@ -542,6 +545,13 @@ function interpolateTemplate(template, substitutions) {
 }
 
 async function getGoogleAccessToken(env) {
+  if (
+    googleAccessToken &&
+    Date.now() < googleAccessTokenExpiresAt
+  ) {
+    return googleAccessToken;
+  }
+
   const nowInSeconds = Math.floor(Date.now() / 1000);
   const header = {
     alg: "RS256",
@@ -580,7 +590,11 @@ async function getGoogleAccessToken(env) {
     );
   }
 
-  return tokenPayload.access_token;
+  googleAccessToken = tokenPayload.access_token;
+  googleAccessTokenExpiresAt =
+    Date.now() + ((tokenPayload.expires_in - 300) * 1000);
+
+  return googleAccessToken;
 }
 
 async function signJwt(content, privateKeyPem) {
