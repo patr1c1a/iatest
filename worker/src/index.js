@@ -339,35 +339,6 @@ async function verifyTurnstile(token, request, env) {
   return result.success === true;
 }
 
-async function ensureSheetHeaders(env) {
-  const headerRange = buildSheetRange(env.GOOGLE_SHEET_NAME, "A1:S1");
-  const currentHeaderRow = await sheetsRequest(
-    env,
-    `/values/${headerRange}`,
-    { method: "GET" },
-  );
-
-  const currentHeaders = currentHeaderRow.values?.[0] || [];
-  const headersMissing =
-    currentHeaders.length !== SHEET_HEADERS.length ||
-    SHEET_HEADERS.some((header, index) => currentHeaders[index] !== header);
-
-  if (!headersMissing) {
-    return;
-  }
-
-  await sheetsRequest(
-    env,
-    `/values/${headerRange}?valueInputOption=RAW`,
-    {
-      method: "PUT",
-      body: JSON.stringify({
-        values: [SHEET_HEADERS],
-      }),
-    },
-  );
-}
-
 function hasExceededEmailLimit(records, email) {
   const normalizedEmail = sanitizeText(email).toLowerCase();
 
