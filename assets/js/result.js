@@ -178,7 +178,7 @@ function renderResult(record, profile, cta, appConfig) {
 
     <section class="result-section download-card">
         <p class="download-card__title">
-          Llevate tu resultado completo
+          Llevate una copia de tu resultado del test
         </p>
         <button
           type="button"
