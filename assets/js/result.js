@@ -246,13 +246,7 @@ function renderResult(record, profile, cta, appConfig) {
           href="${escapeHtml(cta.webSite.url)}"
           target="_blank"
           rel="noreferrer">
-          <svg viewBox="0 0 24 24" aria-hidden="true">
-            <circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="2"/>
-            <path d="M3 12h18" stroke="currentColor" stroke-width="2"/>
-            <path d="M12 3c3 3 3 15 0 18M12 3c-3 3-3 15 0 18"
-                  stroke="currentColor"
-                  stroke-width="2"/>
-          </svg>
+          <i data-lucide="globe"></i>
           ${escapeHtml(cta.webSite.label)}
         </a>
       </div>
@@ -292,17 +286,11 @@ function renderResult(record, profile, cta, appConfig) {
           class="button-ghost share-button"
           href="mailto:?subject=%C2%BFCu%C3%A1l%20es%20tu%20perfil%20de%20usuario%20de%20IA%3F&body=Te%20comparto%20este%20test%20gratuito%20para%20descubrir%20c%C3%B3mo%20us%C3%A1s%20la%20IA%20y%20cu%C3%A1l%20es%20tu%20mayor%20riesgo%3A%20https%3A%2F%2Fiatest.patriciaemiguel.com"
         >
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-            <rect x="3.5" y="5.5" width="17" height="13" rx="2"></rect>
-            <path d="m5 7 7 5 7-5"></path>
-          </svg>
+          <i data-lucide="mail"></i>
           E-mail
         </a>
         <button class="button-ghost share-button" type="button" id="copySiteLink">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-            <rect x="9" y="9" width="11" height="11" rx="2"></rect>
-            <path d="M5 15V6a2 2 0 0 1 2-2h9"></path>
-          </svg>
+          <i data-lucide="copy"></i>
           Copiar enlace
         </button>
       </div>
@@ -332,13 +320,9 @@ function renderResult(record, profile, cta, appConfig) {
 
       setTimeout(() => {
         button.innerHTML = `
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-            <rect x="9" y="9" width="11" height="11" rx="2"></rect>
-            <path d="M5 15V6a2 2 0 0 1 2-2h9"></path>
-          </svg>
+          <i data-lucide="copy"></i>
           <span>Copiar enlace</span>
         `;
-
         lucide.createIcons();
       }, 2500);
 

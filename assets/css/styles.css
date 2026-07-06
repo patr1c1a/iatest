@@ -975,6 +975,13 @@ h3 {
   line-height: 1.3;
 }
 
+.cta-link .lucide,
+.share-button .lucide {
+  width: 18px;
+  height: 18px;
+  flex: none;
+}
+
 .result-section--cta {
   max-width: 860px;
   margin: 4rem auto;
