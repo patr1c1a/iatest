@@ -720,7 +720,8 @@ h3 {
 .submission-success__share {
   display: grid;
   gap: 14px;
-  margin-top: 3.5rem;
+  max-width: 860px;
+  margin: 5rem auto 0;
 }
 
 .submission-success__share-label {

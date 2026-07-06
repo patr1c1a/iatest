@@ -760,6 +760,13 @@ function renderLeadScreen(feedbackMessage = "", feedbackType = "") {
         </div>
       </form>
     </section>
+
+    <div class="submission-success__message">
+      <p class="submission-success__message-copy">
+        Después de conocer tu perfil, probablemente empieces a mirar la IA de otra manera.
+        Ese es el primer paso para aprovecharla mejor.
+      </p>
+    </div>
   `;
 
   if (window.turnstile) {

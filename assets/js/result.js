@@ -261,12 +261,92 @@ function renderResult(record, profile, cta, appConfig) {
         ← Hacer nuevamente el test
       </a>
     </section>
+
+    <div class="submission-success__share">
+      <p class="submission-success__share-label">Compartir el test con alguien que debería descubrir su perfil:</p>
+      <div class="share-actions">
+        <a
+          class="button-ghost share-button share-button--whatsapp"
+          href="https://wa.me/?text=Completa%20el%20test%20gratuito%20para%20descubrir%20cu%C3%A1l%20es%20tu%20perfil%20de%20usuario%20de%20IA%3A%20https%3A%2F%2Fiatest.patriciaemiguel.com"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M20 11.5A8.5 8.5 0 0 1 7.4 19l-3.4 1 1.1-3.2A8.5 8.5 0 1 1 20 11.5Z"></path>
+            <path d="M9.5 9.5c.3-.7.6-.7.9-.7h.5c.2 0 .4 0 .5.4l.7 1.7c.1.2.1.4 0 .6l-.3.5c-.1.2-.2.3 0 .5.3.6 1 1.5 2.1 2 .2.1.4.1.5 0l.5-.6c.2-.2.4-.2.6-.1l1.6.8c.2.1.3.2.3.5v.5c0 .3-.1.6-.7.8-.6.2-1.9.2-3.5-.6-1.8-.9-3.2-2.7-3.8-4-.6-1.2-.3-2.3-.1-2.7Z"></path>
+          </svg>
+          WhatsApp
+        </a>
+        <a
+          class="button-ghost share-button share-button--facebook"
+          href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fiatest.patriciaemiguel.com"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <path d="M24 12.073C24 5.405 18.627 0 12 0S0 5.405 0 12.073C0 18.1 4.388 23.094 10.125 24v-8.437H7.078v-3.49h3.047V9.428c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.49h-2.796V24C19.612 23.094 24 18.1 24 12.073z"/>
+          </svg>
+          Facebook
+        </a>
+        <a
+          class="button-ghost share-button"
+          href="mailto:?subject=%C2%BFCu%C3%A1l%20es%20tu%20perfil%20de%20usuario%20de%20IA%3F&body=Te%20comparto%20este%20test%20gratuito%20para%20descubrir%20c%C3%B3mo%20us%C3%A1s%20la%20IA%20y%20cu%C3%A1l%20es%20tu%20mayor%20riesgo%3A%20https%3A%2F%2Fiatest.patriciaemiguel.com"
+        >
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <rect x="3.5" y="5.5" width="17" height="13" rx="2"></rect>
+            <path d="m5 7 7 5 7-5"></path>
+          </svg>
+          E-mail
+        </a>
+        <button class="button-ghost share-button" type="button" id="copySiteLink">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <rect x="9" y="9" width="11" height="11" rx="2"></rect>
+            <path d="M5 15V6a2 2 0 0 1 2-2h9"></path>
+          </svg>
+          Copiar enlace
+        </button>
+      </div>
+    </div>
   `;
 
   document.querySelector("#downloadPdf")?.addEventListener("click", () => {
     downloadPdf(record, profile, appConfig);
   });
 
+  document
+  .querySelector("#copySiteLink")
+  ?.addEventListener("click", async () => {
+    const button = document.querySelector("#copySiteLink");
+
+    try {
+      await navigator.clipboard.writeText(
+        "https://iatest.patriciaemiguel.com"
+      );
+
+      button.innerHTML = `
+        <i data-lucide="check"></i>
+        <span>¡Enlace copiado!</span>
+      `;
+
+      lucide.createIcons();
+
+      setTimeout(() => {
+        button.innerHTML = `
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <rect x="9" y="9" width="11" height="11" rx="2"></rect>
+            <path d="M5 15V6a2 2 0 0 1 2-2h9"></path>
+          </svg>
+          <span>Copiar enlace</span>
+        `;
+
+        lucide.createIcons();
+      }, 2500);
+
+    } catch {
+      alert("No fue posible copiar el enlace.");
+    }
+  });
+  
   document
     .querySelector("#copyPermanentLink")
     ?.addEventListener("click", async () => {
