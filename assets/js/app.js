@@ -71,9 +71,7 @@ async function initialize() {
 }
 
 async function loadServerConfig() {
-  const response = await fetch(
-    `${runtime.appConfig.api.baseUrl}/api/config`
-  );
+  const response = await fetch(`${runtime.appConfig.api.baseUrl}/api/config`);
 
   if (!response.ok) {
     throw new Error("No fue posible cargar la configuración.");
@@ -329,7 +327,7 @@ async function handleSubmit(event) {
 
     window.localStorage.removeItem(runtime.appConfig.storage.progressKey);
 
-    window.location.assign("submission-success.html");
+    window.location.assign(response.resultUrl);
   } catch (error) {
     runtime.isSubmitting = false;
     renderCurrentStage(

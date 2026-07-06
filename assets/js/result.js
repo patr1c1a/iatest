@@ -177,16 +177,26 @@ function renderResult(record, profile, cta, appConfig) {
     </section>
 
     <section class="result-section download-card">
-        <p class="download-card__title">
-          Llevate una copia de tu resultado del test
-        </p>
+      <p class="download-card__title">
+        Guarda tu resultado del test
+      </p>
+      <div class="download-actions">
         <button
           type="button"
-          class="button download-button"
+          class="button download-action"
           id="downloadPdf">
           <i data-lucide="download"></i>
           <span>Descargar informe en PDF</span>
         </button>
+
+        <button
+          type="button"
+          class="button-ghost download-action"
+          id="copyPermanentLink">
+          <i data-lucide="link"></i>
+          <span>Copiar enlace permanente</span>
+        </button>
+      </div>
     </section>
 
     <section class="result-section result-section--cta">
@@ -256,6 +266,30 @@ function renderResult(record, profile, cta, appConfig) {
   document.querySelector("#downloadPdf")?.addEventListener("click", () => {
     downloadPdf(record, profile, appConfig);
   });
+
+  document
+    .querySelector("#copyPermanentLink")
+    ?.addEventListener("click", async () => {
+      const button = document.querySelector("#copyPermanentLink");
+
+      try {
+        await navigator.clipboard.writeText(window.location.href);
+        button.innerHTML = `
+        <i data-lucide="check"></i>
+        <span>¡Enlace copiado!</span>
+      `;
+        lucide.createIcons();
+        setTimeout(() => {
+          button.innerHTML = `
+          <i data-lucide="link"></i>
+          <span>Copiar enlace permanente</span>
+        `;
+          lucide.createIcons();
+        }, 2500);
+      } catch {
+        alert("No fue posible copiar el enlace.");
+      }
+    });
 
   lucide.createIcons();
 }
