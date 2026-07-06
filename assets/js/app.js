@@ -709,13 +709,14 @@ function renderLeadScreen(feedbackMessage = "", feedbackType = "") {
       <form id="leadForm" class="screen" novalidate>
         <div class="grid-two">
           <div class="field-group">
-            <label class="field-label" for="name">Nombre y apellido <span class="field-help">(requerido)</span></label>
+            <label class="field-label" for="name">Nombre completo <span class="field-help">(requerido)</span></label>
             <input
               class="field-input"
               id="name"
               name="name"
               type="text"
               autocomplete="name"
+              placeholder="Juan Pérez"
               value="${escapeHtml(runtime.state.lead.name)}"
               required
             />
@@ -729,6 +730,7 @@ function renderLeadScreen(feedbackMessage = "", feedbackType = "") {
               name="email"
               type="email"
               autocomplete="email"
+              placeholder="juanperez@gmail.com"
               value="${escapeHtml(runtime.state.lead.email)}"
               required
             />
@@ -745,6 +747,7 @@ function renderLeadScreen(feedbackMessage = "", feedbackType = "") {
               name="city"
               type="text"
               autocomplete="address-level2"
+              placeholder="Ciudad"
               value="${escapeHtml(runtime.state.lead.city)}"
             />
           </div>

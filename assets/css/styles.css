@@ -580,6 +580,11 @@ h3 {
   box-shadow: 0 0 0 3px rgba(14, 122, 109, 0.14);
 }
 
+.field-input::placeholder {
+  color: var(--text-soft);
+  opacity: 0.55;
+}
+
 .feedback {
   padding: 14px 16px;
   border-radius: var(--radius-md);
