@@ -194,7 +194,7 @@ function renderResult(record, profile, cta, appConfig) {
           class="button-ghost download-action"
           id="copyPermanentLink">
           <i data-lucide="link"></i>
-          <span>Copiar enlace permanente</span>
+          <span>Copiar enlace a tu resultado</span>
         </button>
       </div>
     </section>
@@ -346,7 +346,7 @@ function renderResult(record, profile, cta, appConfig) {
         setTimeout(() => {
           button.innerHTML = `
           <i data-lucide="link"></i>
-          <span>Copiar enlace permanente</span>
+          <span>Copiar enlace a tu resultado</span>
         `;
           lucide.createIcons();
         }, 2500);
