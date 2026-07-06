@@ -261,7 +261,7 @@ function renderResult(record, profile, cta, appConfig) {
       <div class="share-actions">
         <a
           class="button-ghost share-button share-button--whatsapp"
-          href="https://wa.me/?text=Completa%20el%20test%20gratuito%20para%20descubrir%20cu%C3%A1l%20es%20tu%20perfil%20de%20usuario%20de%20IA%3A%20https%3A%2F%2Fiatest.patriciaemiguel.com"
+          href="https://wa.me/?text=Te%20comparto%20este%20test%20gratuito%20para%20descubrir%20cu%C3%A1l%20es%20tu%20perfil%20de%20usuario%20de%20IA%3A%20https%3A%2F%2Fiatest.patriciaemiguel.com"
           target="_blank"
           rel="noopener noreferrer"
         >
@@ -284,7 +284,7 @@ function renderResult(record, profile, cta, appConfig) {
         </a>
         <a
           class="button-ghost share-button"
-          href="mailto:?subject=%C2%BFCu%C3%A1l%20es%20tu%20perfil%20de%20usuario%20de%20IA%3F&body=Te%20comparto%20este%20test%20gratuito%20para%20descubrir%20c%C3%B3mo%20us%C3%A1s%20la%20IA%20y%20cu%C3%A1l%20es%20tu%20mayor%20riesgo%3A%20https%3A%2F%2Fiatest.patriciaemiguel.com"
+          href="mailto:?subject=%C2%BFCu%C3%A1l%20es%20tu%20perfil%20de%20usuario%20de%20IA%3F&body=Te%20comparto%20este%20test%20gratuito%20para%20descubrir%20c%C3%B3mo%20te%20relacionas%20con%20la%20IA%20y%20de%20qu%C3%A9%20forma%20podr%C3%ADas%20aprovecharla%20mejor%3A%20https%3A%2F%2Fiatest.patriciaemiguel.com"
         >
           <i data-lucide="mail"></i>
           E-mail
