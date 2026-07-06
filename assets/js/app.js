@@ -763,29 +763,26 @@ function renderLeadScreen(feedbackMessage = "", feedbackType = "") {
   `;
 
   if (window.turnstile) {
-    window.turnstile.render(
-      document.querySelector(".cf-turnstile"),
-      {
-        sitekey: runtime.turnstileSiteKey,
-        appearance: "interaction-only",
+    window.turnstile.render(document.querySelector(".cf-turnstile"), {
+      sitekey: runtime.turnstileSiteKey,
+      appearance: "interaction-only",
 
-        callback(token) {
-          runtime.turnstileToken = token;
-        },
+      callback(token) {
+        runtime.turnstileToken = token;
+      },
 
-        "expired-callback"() {
-          runtime.turnstileToken = "";
-        },
+      "expired-callback"() {
+        runtime.turnstileToken = "";
+      },
 
-        "error-callback"() {
-          runtime.turnstileToken = "";
-        },
+      "error-callback"() {
+        runtime.turnstileToken = "";
+      },
 
-        "timeout-callback"() {
-          runtime.turnstileToken = "";
-        }
-      }
-    );
+      "timeout-callback"() {
+        runtime.turnstileToken = "";
+      },
+    });
   }
 }
 

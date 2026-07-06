@@ -316,7 +316,11 @@ function downloadPdf(record, profile, appConfig) {
 
   documentPdf.setFont("helvetica", "bold");
   documentPdf.setFontSize(22);
-  documentPdf.text("Test de perfil de usuario de IA · Resultado", marginX, cursorY);
+  documentPdf.text(
+    "Test de perfil de usuario de IA · Resultado",
+    marginX,
+    cursorY,
+  );
   cursorY += 28;
 
   documentPdf.setFont("helvetica", "normal");
