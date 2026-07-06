@@ -251,9 +251,6 @@ function renderResult(record, profile, cta, appConfig) {
         </a>
       </div>
 
-      <a class="result-restart-link" href="index.html">
-        ← Hacer nuevamente el test
-      </a>
     </section>
 
     <div class="submission-success__share">
@@ -294,6 +291,9 @@ function renderResult(record, profile, cta, appConfig) {
           Copiar enlace
         </button>
       </div>
+      <a class="result-restart-link" href="index.html">
+        ← Hacer nuevamente el test
+      </a>
     </div>
   `;
 
