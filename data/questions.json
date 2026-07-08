@@ -80,7 +80,7 @@
     },
     {
       "id": "q4",
-      "text": "La IA te da una respuesta larga y detallada sobre un tema importante para vos. ¿Cómo sería más probable que reacciones?",
+      "text": "La IA te da una respuesta larga y detallada sobre un tema que te parece importante. ¿Cómo sería más probable que reacciones?",
       "options": [
         {
           "profile": "explorador",
@@ -132,7 +132,7 @@
     },
     {
       "id": "q6",
-      "text": "Tenés una duda o tarea a hacer sobre un tema que no conocés demasiado. ¿Cómo usarías la IA en ese caso?",
+      "text": "Te surge una duda o tarea a hacer sobre un tema que te resulta desconocido. ¿Cómo usarías la IA en ese caso?",
       "options": [
         {
           "profile": "explorador",
@@ -158,7 +158,7 @@
     },
     {
       "id": "q7",
-      "text": "Descubrís que una tarea repetitiva de tu día a día podría hacerse con IA. ¿Cuál podría ser tu actitud más probable?",
+      "text": "Ves que una tarea repetitiva de tu día a día podría hacerse con IA. ¿Cuál podría ser tu actitud más probable?",
       "options": [
         {
           "profile": "explorador",
@@ -184,7 +184,7 @@
     },
     {
       "id": "q8",
-      "text": "Te enterás de que una herramienta de IA puede generar imágenes a partir de una descripción escrita. ¿Cuál sería tu reacción más probable?",
+      "text": "Una herramienta de IA que ya usabas ahora puede generar imágenes a partir de una descripción escrita. ¿Cuál sería tu reacción más probable?",
       "options": [
         {
           "profile": "explorador",
@@ -210,7 +210,7 @@
     },
     {
       "id": "q9",
-      "text": "Usás IA para resolver un problema y el resultado es mucho mejor de lo que esperabas. ¿Qué reacción sería más probable en vos?",
+      "text": "Si luego de usar IA para resolver un problema, el resultado es mucho mejor de lo que esperabas, ¿cuál sería tu reacción más probable?",
       "options": [
         {
           "profile": "explorador",
