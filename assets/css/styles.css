@@ -893,7 +893,7 @@ h3 {
 }
 
 .download-action {
-  width: min(100%, 320px);
+  width: min(100%, 360px);
   display: inline-flex;
   align-items: center;
   justify-content: center;
