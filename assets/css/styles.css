@@ -440,9 +440,9 @@ h3 {
   color: var(--text);
 }
 
-.email-result-text {
-  display: grid;
-  place-items: center;
+.clarifying-text {
+  display: block;
+  text-align: center;
   margin: 30px auto;
   font-weight: 200;
   font-size: 1rem;

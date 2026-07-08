@@ -253,8 +253,8 @@ function renderResult(record, profile, cta, appConfig) {
 
     </section>
 
-    <div class="submission-success__share">
-      <p class="submission-success__share-label">Compartir el test con alguien que debería descubrir su perfil:</p>
+    <div>
+      <p class="clarifying-text">Compartir el test con alguien que debería descubrir su perfil:</p>
       <div class="share-actions">
         <a
           class="button-ghost share-button share-button--whatsapp"
