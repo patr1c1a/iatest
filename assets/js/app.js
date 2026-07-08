@@ -700,7 +700,7 @@ function renderLeadScreen(feedbackMessage = "", feedbackType = "") {
     <section class="screen">
       <div class="screen-header">
         <p class="screen-kicker">Recibir tu resultado</p>
-        <h2>Ingresa tus datos para recibir tu informe completo</h2>
+        <h2>Ingresa tus datos para recibir tu informe personalizado</h2>
       </div>
 
       ${renderFeedback(feedbackMessage, feedbackType)}
@@ -766,7 +766,7 @@ function renderLeadScreen(feedbackMessage = "", feedbackType = "") {
 
     <div>
       <p class="clarifying-text">
-        Se enviará un enlace a tu dirección email para que puedas acceder a tu informe.
+        Se enviará a tu dirección email un enlace al informe.
       </p>
     </div>
   `;
