@@ -192,7 +192,7 @@ h3 {
   min-height: 520px;
   padding: 40px 28px 28px;
   min-width: 0;
-  margin-top: 20px;
+  margin-top: 1.25rem;
 }
 
 .screen {
@@ -978,24 +978,5 @@ h3 {
 
   .share-button {
     min-width: auto;
-  }
-}
-
-@media (min-width: 980px) {
-  .page-shell--result {
-    grid-template-columns: minmax(0, 1.2fr) minmax(300px, 0.8fr);
-    align-items: start;
-  }
-
-  .page-shell--result > :first-child {
-    grid-column: 1 / -1;
-  }
-
-  .page-shell--result {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-
-  .download-actions {
-    flex-direction: row;
   }
 }
