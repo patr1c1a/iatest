@@ -541,7 +541,7 @@ function renderIntroScreen() {
 
         <div class="intro-description__text">
           <p>
-            10 preguntas para averiguar cuál tu perfil de usuario y aprender cómo aprovechar mejor la inteligencia artificial.
+            10 preguntas para averiguar cuál es tu perfil de usuario y recibir consejos para aprovechar mejor la inteligencia artificial.
           </p>
         </div>
 
