@@ -268,7 +268,7 @@ h3 {
   border: 1px solid var(--border);
   border-radius: var(--radius-lg);
   background: var(--surface-strong);
-  padding: 8px 26px;
+  padding: 8px 12px;
   transition:
     transform 180ms ease,
     border-color 180ms ease,
