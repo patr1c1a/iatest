@@ -235,7 +235,7 @@ h3 {
 .question {
   margin: 0;
   font-family: "Fraunces", serif;
-  font-size: 1.1rem;
+  font-size: 1rem;
   line-height: 1.05;
 }
 
@@ -956,6 +956,16 @@ h3 {
 
   .screen-header {
     scroll-margin-top: 72px;
+  }
+
+  .profile-card {
+    padding: 2rem 0.5rem;
+  }
+
+  .result-profile-description {
+    max-width: none;
+    font-size: 1rem;
+    line-height: 1.7;
   }
 
   .download-actions {
