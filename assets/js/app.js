@@ -626,7 +626,7 @@ function renderQuestionScreen(feedbackMessage = "", feedbackType = "") {
     <section class="screen">
       <div class="screen-header">
         <div class="question-count">Pregunta ${runtime.state.currentQuestionIndex + 1}</div>
-        <h2>${escapeHtml(question.text)}</h2>
+        <h2 class="question">${escapeHtml(question.text)}</h2>
       </div>
 
       ${renderFeedback(feedbackMessage, feedbackType)}

@@ -189,7 +189,6 @@ h3 {
 }
 
 .app-card {
-  min-height: 520px;
   padding: 40px 28px 28px;
   min-width: 0;
   margin-top: 1.25rem;
@@ -233,6 +232,13 @@ h3 {
   font-weight: 300;
 }
 
+.question {
+  margin: 0;
+  font-family: "Fraunces", serif;
+  font-size: 1.1rem;
+  line-height: 1.05;
+}
+
 .question-count {
   display: inline-flex;
   width: fit-content;
@@ -262,7 +268,7 @@ h3 {
   border: 1px solid var(--border);
   border-radius: var(--radius-lg);
   background: var(--surface-strong);
-  padding: 14px 26px;
+  padding: 8px 26px;
   transition:
     transform 180ms ease,
     border-color 180ms ease,
