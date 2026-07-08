@@ -758,16 +758,15 @@ function renderLeadScreen(feedbackMessage = "", feedbackType = "") {
 
         <div class="button-row">
           <button type="submit" class="button" ${runtime.isSubmitting ? "disabled" : ""}>
-            ${runtime.isSubmitting ? "Enviando..." : "Recibir resultado por email"}
+            ${runtime.isSubmitting ? "Enviando..." : "Recibir resultado"}
           </button>
         </div>
       </form>
     </section>
 
-    <div class="submission-success__message">
-      <p class="submission-success__message-copy">
-        Después de conocer tu perfil, probablemente empieces a mirar la IA de otra manera.
-        Ese es el primer paso para aprovecharla mejor.
+    <div>
+      <p class="email-result-text">
+        Se enviará un enlace a tu dirección email para que puedas acceder a tu informe.
       </p>
     </div>
   `;
