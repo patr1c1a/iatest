@@ -764,7 +764,7 @@ function renderLeadScreen(feedbackMessage = "", feedbackType = "") {
       </form>
     </section>
 
-    <div class="clarifying-text">
+    <div>
       <p class="clarifying-text">
         Se enviará un enlace a tu dirección email para que puedas acceder a tu informe.
       </p>
