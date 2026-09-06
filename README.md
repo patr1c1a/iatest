@@ -44,7 +44,7 @@ El Worker:
 - envía el link por Resend
 - expone `GET /api/results/:token`
 
-Más detalles en [worker/README.md](/d:/workspace/cursos-ia-test/worker/README.md).
+Más detalles en `worker/README.md`.
 
 ## Test de perfiles
 
