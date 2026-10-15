@@ -1,6 +1,17 @@
 # Cloudflare Worker
 
-Backend para persistir respuestas, generar tokens y devolver resultados históricos por URL.
+El Worker es el backend: recibe el formulario y hace las operaciones que no deben exponerse en el navegador. Funciona como intermediario entre la página y Turnstile, Google Sheets y Resend. El worker se encarga de persistir respuestas, generar tokens y devolver resultados históricos por URL.
+
+## Flujo
+
+1. El worker recibe nombre, email, ciudad, respuestas y el token de Turnstile.
+2. Valida los datos y comprueba el token contra Cloudflare.
+3. Consulta la planilla para aplicar el límite de envíos por email.
+4. Calcula el perfil, genera un token y guarda los datos en una fila de Google Sheets.
+5. Programa el envío del correo mediante Resend.
+6. Devuelve la URL del resultado. Cuando la página visita esa URL, el Worker busca la fila por token y devuelve los datos.
+
+Guardar en Sheets ocurre antes de responder, pero el envío del correo es asíncrono: si falla, el resultado puede seguir mostrándose y el error queda en los logs del Worker. El Worker también administra las credenciales privadas y las reglas CORS.
 
 ## Endpoints
 
